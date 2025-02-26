@@ -1,7 +1,5 @@
-// 익명 문의를 제출받는 Form 컴포넌트
 'use client';
-
-import { Button } from '@/components/ui/button';
+import { Button } from '../ui/button';
 import {
   Select,
   SelectContent,
@@ -13,11 +11,14 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-export default function VocAddForm() {
+
+// 아마도 FAQ를 작성하는 Form 역할
+
+export default function FaqAddForm() {
   return (
     <>
       <form className="flex flex-col justify-center items-center m-auto my-1 w-6/12 min-h-screen">
-        <h1 className="text-center text-2xl font-bold py-2">익명 건의 또는 문의 Form</h1>
+        <h1 className="text-center text-2xl font-bold py-2">FAQ 작성 예제</h1>
 
         <div className="my-2">
           {' '}
