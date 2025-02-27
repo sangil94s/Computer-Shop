@@ -10,5 +10,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Alphas {
+  id      Int     @id @default(autoincrement())
+  bios     String
 }
