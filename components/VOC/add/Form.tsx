@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // 익명 문의를 제출받는 Form 컴포넌트
 'use client';
 
@@ -13,62 +14,60 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
+interface AddTypes {
+  category: string;
+  title: string;
+  description: string;
+}
 export default function VocAddForm() {
+  const router = useRouter();
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm<AddTypes>();
+
+  const onSubmit = async (data: AddTypes) => {
+    try {
+      const response = await axios.post('/api/voc', {
+        category: data.category,
+        title: data.title,
+        description: data.description,
+      });
+      // console.log(response);
+      alert('건의사항 작성이 완료되었어요!');
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
-      <form className="flex flex-col justify-center items-center m-auto my-1 w-6/12 min-h-screen">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col justify-center items-center m-auto my-1 w-6/12 min-h-screen"
+      >
         <h1 className="text-center text-2xl font-bold py-2">익명 건의 또는 문의 Form</h1>
 
         <div className="my-2">
           {' '}
           {/* Select 부분 수정 필요함 */}
           <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
-          <Select>
+          <Select onValueChange={value => setValue('category', value)}>
             <SelectTrigger className="w-[280px]">
-              <SelectValue placeholder="Select a timezone" />
+              <SelectValue placeholder="카테고리를 선택하세요" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>North America</SelectLabel>
-                <SelectItem value="est">Eastern Standard Time (EST)</SelectItem>
-                <SelectItem value="cst">Central Standard Time (CST)</SelectItem>
-                <SelectItem value="mst">Mountain Standard Time (MST)</SelectItem>
-                <SelectItem value="pst">Pacific Standard Time (PST)</SelectItem>
-                <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
-                <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Europe & Africa</SelectLabel>
-                <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>
-                <SelectItem value="cet">Central European Time (CET)</SelectItem>
-                <SelectItem value="eet">Eastern European Time (EET)</SelectItem>
-                <SelectItem value="west">Western European Summer Time (WEST)</SelectItem>
-                <SelectItem value="cat">Central Africa Time (CAT)</SelectItem>
-                <SelectItem value="eat">East Africa Time (EAT)</SelectItem>
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Asia</SelectLabel>
-                <SelectItem value="msk">Moscow Time (MSK)</SelectItem>
-                <SelectItem value="ist">India Standard Time (IST)</SelectItem>
-                <SelectItem value="cst_china">China Standard Time (CST)</SelectItem>
-                <SelectItem value="jst">Japan Standard Time (JST)</SelectItem>
-                <SelectItem value="kst">Korea Standard Time (KST)</SelectItem>
-                <SelectItem value="ist_indonesia">Indonesia Central Standard Time (WITA)</SelectItem>
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>Australia & Pacific</SelectLabel>
-                <SelectItem value="awst">Australian Western Standard Time (AWST)</SelectItem>
-                <SelectItem value="acst">Australian Central Standard Time (ACST)</SelectItem>
-                <SelectItem value="aest">Australian Eastern Standard Time (AEST)</SelectItem>
-                <SelectItem value="nzst">New Zealand Standard Time (NZST)</SelectItem>
-                <SelectItem value="fjt">Fiji Time (FJT)</SelectItem>
-              </SelectGroup>
-              <SelectGroup>
-                <SelectLabel>South America</SelectLabel>
-                <SelectItem value="art">Argentina Time (ART)</SelectItem>
-                <SelectItem value="bot">Bolivia Time (BOT)</SelectItem>
-                <SelectItem value="brt">Brasilia Time (BRT)</SelectItem>
-                <SelectItem value="clt">Chile Standard Time (CLT)</SelectItem>
+                <SelectLabel>카테고리 선택 하시오.</SelectLabel>
+                <SelectItem value="배송">배송</SelectItem>
+                <SelectItem value="주문">주문</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -76,14 +75,20 @@ export default function VocAddForm() {
 
         <div className="my-2 w-full">
           <label className="py-1 font-bold text-base">제목을 입력하시오</label>
-          <Input placeholder="제목을 입력하시오" />
+          <Input {...register('title', { required: true })} placeholder="제목을 입력하시오" />
+          {errors.title && <p className="text-red-600 text-center font-bold">제목은 필수 값 입니다.</p>}
         </div>
 
         <div className="my-2 w-full">
           <label className="py-1 font-bold text-base">설명을 입력하시오</label>
-          <Textarea placeholder="설명을 입력하시오" className="h-40 resize-none" />
+          <Textarea
+            {...register('description', { required: true })}
+            placeholder="설명을 입력하시오"
+            className="h-40 resize-none"
+          />
+          {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
-        <Button>추가</Button>
+        <Button type="submit">추가</Button>
       </form>
     </>
   );
