@@ -13,7 +13,7 @@ interface VOCType {
 }
 
 async function getDatas() {
-  const res = await fetch('http://localhost:3000/api/voc', { next: { revalidate: 60 } });
+  const res = await fetch('http://localhost:3000/api/voc', { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');
