@@ -7,7 +7,14 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useRouter } from 'next/navigation';
-import { AiOutlineMenu } from 'react-icons/ai';
+import {
+  AiOutlineMenu,
+  AiOutlineIdcard,
+  AiOutlineSetting,
+  AiOutlineQuestionCircle,
+  AiOutlineCustomerService,
+  AiOutlineUserDelete,
+} from 'react-icons/ai';
 // Header
 export default function Header() {
   const router = useRouter();
@@ -28,18 +35,20 @@ export default function Header() {
               <AiOutlineMenu />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/mypages/1')}>
-                My Profile
+              <DropdownMenuItem className="text-center cursor-pointer" onClick={() => router.push('/mypages/1')}>
+                <AiOutlineIdcard /> My Profile
               </DropdownMenuItem>
-              <DropdownMenuItem>Admin</DropdownMenuItem>
+              <DropdownMenuItem className="text-center">
+                <AiOutlineSetting /> Admin
+              </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/faq')}>
-                FAQ
+                <AiOutlineQuestionCircle /> FAQ
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/voc/add')}>
-                VOC
+                <AiOutlineCustomerService /> VOC
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => tempslogout()}>
-                Logout
+                <AiOutlineUserDelete /> Logout
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
