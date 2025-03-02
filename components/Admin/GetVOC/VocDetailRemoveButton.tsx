@@ -1,10 +1,12 @@
 'use client';
 
+import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
 export default function VocDetailRemoveButton({ ids }: { ids: number }) {
+  useAdminRedirect();
   const router = useRouter();
 
   const handleDelete = async () => {
