@@ -4,6 +4,7 @@ import ReactQueryProvider from './util/ReactQuery/ReactQuery';
 import Footer from '@/components/common/Footer';
 import TopButton from '@/components/common/Top';
 import Header from '@/components/common/Header';
+import SessionProvider from '@/components/Auth/SessionProvider';
 
 export const metadata: Metadata = {
   title: 'Computer-Shop',
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Header />
-        <ReactQueryProvider>{children}</ReactQueryProvider>
-        <TopButton />
-        <Footer />
+        <SessionProvider>
+          <Header />
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <TopButton />
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

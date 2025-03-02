@@ -9,19 +9,16 @@ import {
 import { useRouter } from 'next/navigation';
 import {
   AiOutlineMenu,
-  AiOutlineIdcard,
   AiOutlineSetting,
   AiOutlineQuestionCircle,
   AiOutlineCustomerService,
   AiOutlineUserDelete,
 } from 'react-icons/ai';
+import { signOut, useSession } from 'next-auth/react';
 // Header
 export default function Header() {
   const router = useRouter();
-
-  const tempslogout = () => {
-    alert('구현 예정 입니다!');
-  };
+  const { data: session } = useSession();
   return (
     <>
       <header className="flex flex-row justify-between w-full h-16 border-b-2 border-slate-200 bg-white mb-1">
@@ -35,21 +32,27 @@ export default function Header() {
               <AiOutlineMenu />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem className="text-center cursor-pointer" onClick={() => router.push('/mypages/1')}>
-                <AiOutlineIdcard /> My Profile
-              </DropdownMenuItem>
-              <DropdownMenuItem className="text-center">
-                <AiOutlineSetting /> Admin
-              </DropdownMenuItem>
+              {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
+                <DropdownMenuItem className="text-center">
+                  <AiOutlineSetting /> Admin
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/faq')}>
                 <AiOutlineQuestionCircle /> FAQ
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/voc/add')}>
                 <AiOutlineCustomerService /> VOC
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer" onClick={() => tempslogout()}>
-                <AiOutlineUserDelete /> Logout
-              </DropdownMenuItem>
+              {session && (
+                <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
+                  <AiOutlineUserDelete /> Logout
+                </DropdownMenuItem>
+              )}
+              {session === null && (
+                <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/auth/logins')}>
+                  <AiOutlineUserDelete /> Login
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </section>
