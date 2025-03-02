@@ -3,8 +3,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 
 export default function ProductAddForm() {
+  useAdminRedirect();
   return (
     <>
       <form className="w-10/12 flex flex-col justify-center m-auto my-2">

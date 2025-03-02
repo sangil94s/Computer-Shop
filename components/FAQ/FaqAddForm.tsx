@@ -11,10 +11,12 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 
 // 아마도 FAQ를 작성하는 Form 역할
 
 export default function FaqAddForm() {
+  useAdminRedirect();
   return (
     <>
       <form className="flex flex-col justify-center items-center m-auto my-1 w-6/12 min-h-screen">
