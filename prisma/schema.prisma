@@ -26,3 +26,11 @@ model Vocs {
   description String @db.VarChar(255) // 문의 내용
   createDate   DateTime    @default(now())
 } // 익명 문의 목적 - 별도 타 모델과 관계 설정 안함
+
+model Faq {
+  id      Int     @id @default(autoincrement())
+  category String @db.VarChar(10) 
+  title String @db.VarChar(30) 
+  description String @db.Text 
+  createDate   DateTime    @default(now())
+}
