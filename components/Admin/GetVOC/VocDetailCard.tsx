@@ -13,7 +13,11 @@ interface VOCType {
 }
 
 async function getDatas() {
-  const res = await fetch('http://localhost:3000/api/voc', { cache: 'no-store' });
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+  const res = await fetch(`${baseUrl}/api/voc`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');
@@ -35,7 +39,7 @@ export default async function VocDetailCard() {
                 <CardDescription>Category: {item.category}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p>{item.description}</p>
+                <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
               </CardContent>
               <CardFooter>
                 <p>Create Time : {dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>

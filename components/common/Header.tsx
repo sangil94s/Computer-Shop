@@ -33,7 +33,7 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
-                <DropdownMenuItem className="text-center">
+                <DropdownMenuItem className="text-center" onClick={() => router.push('/admin')}>
                   <AiOutlineSetting /> Admin
                 </DropdownMenuItem>
               )}

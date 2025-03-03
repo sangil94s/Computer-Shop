@@ -1,16 +1,45 @@
 // FAQ List Components
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+interface FAQTypes {
+  id: number;
+  category: string;
+  title: string;
+  description: string;
+  createDate: string;
+}
+async function getFaqDatas() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
-export default function FaqList() {
+  const res = await fetch(`${baseUrl}/api/faq`, { cache: 'no-store' });
+
+  if (!res.ok) {
+    throw new Error('데이터 호출 실패');
+  }
+
+  return res.json();
+}
+
+export default async function FaqList() {
+  const getFaqData = await getFaqDatas();
+
   return (
     <div className="flex flex-col justify-center items-center">
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>고객문의 관련</AccordionTrigger>
-          <AccordionContent>고객문의 관련 답변 부분</AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      {getFaqData &&
+        getFaqData.data.map((item: FAQTypes) => (
+          <Accordion key={item.id} type="single" collapsible className="w-11/12 my-2">
+            <AccordionItem value="item-1">
+              <AccordionTrigger>
+                {item.category}-{item.title}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ))}
     </div>
   );
 }

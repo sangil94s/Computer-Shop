@@ -3,7 +3,11 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import Link from 'next/link';
 
 async function getCountDatas() {
-  const res = await fetch('http://localhost:3000/api/voc/allcount', { cache: 'no-store' });
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+  const res = await fetch(`${baseUrl}/api/voc/allcount`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');
@@ -17,7 +21,7 @@ export default async function GetVOC() {
 
   return (
     <>
-      <Card className="w-10/12 my-1">
+      <Card className="w-10/12 m-1">
         <CardHeader>
           <CardTitle>익명 문의 조회</CardTitle>
           <CardDescription>
@@ -25,7 +29,7 @@ export default async function GetVOC() {
           </CardDescription>
         </CardHeader>
 
-        <div className="flex justify-center my-1">
+        <div className="flex justify-center items-center my-1">
           <Link href="/admin/voc">
             <Button>자세히 보기</Button>
           </Link>

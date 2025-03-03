@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import TextEditor from '@/app/util/TextEditor';
 
 interface AddTypes {
   category: string;
@@ -31,16 +32,20 @@ export default function VocAddForm() {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<AddTypes>();
 
   const onSubmit = async (data: AddTypes) => {
     try {
-      const response = await axios.post('/api/voc', {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+      const response = await axios.post(`${baseUrl}/api/voc`, {
         category: data.category,
         title: data.title,
         description: data.description,
       });
-      // console.log(response);
       alert('건의사항 작성이 완료되었어요!');
       router.push('/');
     } catch (error) {
@@ -81,11 +86,7 @@ export default function VocAddForm() {
 
         <div className="my-2 w-full">
           <label className="py-1 font-bold text-base">설명을 입력하시오</label>
-          <Textarea
-            {...register('description', { required: true })}
-            placeholder="설명을 입력하시오"
-            className="h-40 resize-none"
-          />
+          <TextEditor value={watch('description') || ''} onChange={content => setValue('description', content)} />
           {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
         <Button type="submit">추가</Button>
