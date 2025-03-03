@@ -17,7 +17,7 @@ export default async function GetVOC() {
 
   return (
     <>
-      <Card className="w-10/12 my-1">
+      <Card className="w-10/12 m-1">
         <CardHeader>
           <CardTitle>익명 문의 조회</CardTitle>
           <CardDescription>
@@ -25,7 +25,7 @@ export default async function GetVOC() {
           </CardDescription>
         </CardHeader>
 
-        <div className="flex justify-center my-1">
+        <div className="flex justify-center items-center my-1">
           <Link href="/admin/voc">
             <Button>자세히 보기</Button>
           </Link>

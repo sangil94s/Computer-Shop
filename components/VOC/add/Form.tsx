@@ -40,7 +40,6 @@ export default function VocAddForm() {
         title: data.title,
         description: data.description,
       });
-      // console.log(response);
       alert('건의사항 작성이 완료되었어요!');
       router.push('/');
     } catch (error) {
