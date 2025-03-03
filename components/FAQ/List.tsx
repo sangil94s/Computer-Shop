@@ -9,11 +9,8 @@ interface FAQTypes {
   createDate: string;
 }
 async function getFaqDatas() {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
-  const res = await fetch(`${baseUrl}/api/faq`, { cache: 'no-store' });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');
