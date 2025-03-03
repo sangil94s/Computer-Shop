@@ -13,7 +13,11 @@ interface VOCType {
 }
 
 async function getDatas() {
-  const res = await fetch('http://localhost:3000/api/voc', { cache: 'no-store' });
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+  const res = await fetch(`${baseUrl}/api/voc`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');

@@ -3,7 +3,11 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import Link from 'next/link';
 
 async function getCountDatas() {
-  const res = await fetch('http://localhost:3000/api/voc/allcount', { cache: 'no-store' });
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+  const res = await fetch(`${baseUrl}/api/voc/allcount`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('데이터 호출 실패');

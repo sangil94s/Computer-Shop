@@ -14,7 +14,11 @@ export default function VocDetailRemoveButton({ ids }: { ids: number }) {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/api/voc/${ids}`);
+      const baseUrl =
+        process.env.NEXT_PUBLIC_SITE_URL ||
+        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+      await axios.delete(`${baseUrl}/api/voc/${ids}`);
       alert('삭제 성공!');
       router.push('/admin/voc');
     } catch (error) {
