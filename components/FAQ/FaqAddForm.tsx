@@ -37,11 +37,7 @@ export default function FaqAddForm() {
 
   const onSubmit = async (data: AddTypes) => {
     try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
-
-      const response = await axios.post(`${baseUrl}/api/faq`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, {
         category: data.category,
         title: data.title,
         description: data.description,
