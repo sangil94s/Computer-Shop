@@ -17,6 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import TextEditor from '@/app/util/TextEditor';
 
 interface AddTypes {
   category: string;
@@ -31,6 +32,7 @@ export default function VocAddForm() {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<AddTypes>();
 
   const onSubmit = async (data: AddTypes) => {
@@ -80,11 +82,12 @@ export default function VocAddForm() {
 
         <div className="my-2 w-full">
           <label className="py-1 font-bold text-base">설명을 입력하시오</label>
-          <Textarea
+          {/* <Textarea
             {...register('description', { required: true })}
             placeholder="설명을 입력하시오"
             className="h-40 resize-none"
-          />
+          /> */}
+          <TextEditor value={watch('description') || ''} onChange={content => setValue('description', content)} />
           {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
         <Button type="submit">추가</Button>

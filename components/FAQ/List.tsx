@@ -30,7 +30,9 @@ export default async function FaqList() {
               <AccordionTrigger>
                 {item.category}-{item.title}
               </AccordionTrigger>
-              <AccordionContent>{item.description}</AccordionContent>
+              <AccordionContent>
+                <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
+              </AccordionContent>
             </AccordionItem>
           </Accordion>
         ))}

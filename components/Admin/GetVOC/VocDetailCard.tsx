@@ -35,7 +35,7 @@ export default async function VocDetailCard() {
                 <CardDescription>Category: {item.category}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p>{item.description}</p>
+                <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
               </CardContent>
               <CardFooter>
                 <p>Create Time : {dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>

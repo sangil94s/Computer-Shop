@@ -11,11 +11,11 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import TextEditor from '@/app/util/TextEditor';
 
 // 아마도 FAQ를 작성하는 Form 역할
 interface AddTypes {
@@ -32,6 +32,7 @@ export default function FaqAddForm() {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useForm<AddTypes>();
 
   const onSubmit = async (data: AddTypes) => {
@@ -82,11 +83,7 @@ export default function FaqAddForm() {
 
         <div className="my-2 w-full">
           <label className="py-1 font-bold text-base">설명을 입력하시오</label>
-          <Textarea
-            {...register('description', { required: true })}
-            placeholder="설명을 입력하시오"
-            className="h-40 resize-none"
-          />
+          <TextEditor value={watch('description') || ''} onChange={content => setValue('description', content)} />
           {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
         <Button type="submit">추가</Button>
