@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <ProductFilter />
-      <div className="grid grid-cols-4 justify-items-center gap-1">
+      <div className="w-full grid grid-cols-1 justify-items-center gap-1 lg:grid-cols-4">
         <ProductCard />
         <ProductCard />
       </div>

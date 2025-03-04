@@ -3,7 +3,6 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/ca
 import Link from 'next/link';
 
 async function getCountDatas() {
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/voc/allcount`, { cache: 'no-store' });
 
   if (!res.ok) {
