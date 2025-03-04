@@ -9,7 +9,6 @@ interface FAQTypes {
   createDate: string;
 }
 async function getFaqDatas() {
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, { cache: 'no-store' });
 
   if (!res.ok) {

@@ -13,7 +13,6 @@ interface VOCType {
 }
 
 async function getDatas() {
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/voc`, { cache: 'no-store' });
 
   if (!res.ok) {
@@ -27,7 +26,7 @@ export default async function VocDetailCard() {
 
   return (
     <>
-      <div className="grid grid-cols-4 justify-items-center w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-4 justify-items-center w-full">
         {getData.data &&
           getData.data.map((item: VOCType) => (
             <Card key={item.id} className="my-1">

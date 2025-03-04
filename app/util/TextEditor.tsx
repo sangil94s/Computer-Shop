@@ -46,7 +46,7 @@ export default function TextEditor({ value, onChange }: TextEditorProps) {
 
   return (
     <div className="p-4 bg-white border rounded-lg shadow w-full">
-      <div className="flex gap-2 mb-2 border-b pb-2">
+      <div className="grid grid-cols-4 lg:grid-cols-8 gap-2 mb-2 border-b pb-2">
         <Button onClick={() => editor.chain().focus().toggleBold().run()} variant="outline">
           B
         </Button>

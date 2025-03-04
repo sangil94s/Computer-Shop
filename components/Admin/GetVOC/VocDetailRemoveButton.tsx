@@ -14,7 +14,6 @@ export default function VocDetailRemoveButton({ ids }: { ids: number }) {
       return;
     }
     try {
-
       await axios.delete(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/voc/${ids}`);
       alert('삭제 성공!');
       router.push('/admin/voc');
