@@ -33,4 +33,15 @@ model Faq {
   title String @db.VarChar(30) 
   description String @db.Text 
   createDate   DateTime    @default(now())
-}
+} // FAQ
+
+model Product {
+  id      Int     @id @default(autoincrement())
+  category String @db.VarChar(10) // 상품 카테고리
+  title String @db.VarChar(25) // 상품 제목
+  price String @db.VarChar(10) // 상품 가격 
+  purchase Boolean // 상품 구매 가능 유/무 -> 품절이면 False
+  smallDescription String @db.VarChar(15) // 상품에 대한 간단 소개
+  productImage String @db.Text // 상품 이미지 
+  createDate   DateTime    @default(now())
+} // 상품 관련 Model
