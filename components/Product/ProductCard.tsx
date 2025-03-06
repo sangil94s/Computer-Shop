@@ -1,8 +1,11 @@
 // 아마도 상품 카드가 될 부분
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Badge } from '../ui/badge';
+import Nodata from '../common/Nodata';
 
 interface ProductAddType {
   id: number;
@@ -38,20 +41,22 @@ export default async function ProductCard() {
             <Link key={item.id} href={`/product/${item.id}`}>
               <Card>
                 <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
+                  <CardTitle>제목 : {item.title}</CardTitle>
                   <Image src={imageUrl} width={300} height={300} alt="Product Image" />
-                  <CardDescription>{item.smallDescription}</CardDescription>
+                  <CardDescription>간단 설명 : {item.smallDescription}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Card Content</p>
+                  <Badge>Category : {item.category}</Badge>
                 </CardContent>
                 <CardFooter>
-                  <p>{item.createDate}</p>
+                  <p>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>
                 </CardFooter>
               </Card>
             </Link>
           );
         })}
+
+      {getProductData.data.length === 0 && <Nodata />}
     </>
   );
 }

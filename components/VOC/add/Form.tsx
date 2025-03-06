@@ -51,7 +51,7 @@ export default function VocAddForm() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center items-center my-1 w-10/12 lg:w-6/12 min-h-screen"
+        className="flex flex-col justify-center items-center my-1 w-full min-h-screen"
       >
         <h1 className="text-center text-2xl font-bold py-2">익명 건의 또는 문의 Form</h1>
 
