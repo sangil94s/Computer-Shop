@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // 상품 관련 상세 페이지가 될 부분
 import ProductDetailCard from '@/components/Product/ProductDetailCard';
 import ProductDetailImage from '@/components/Product/ProductDetailImage';
@@ -7,10 +8,10 @@ export const metadata: Metadata = {
   description: '수정 예정',
 };
 
-export default function page() {
+export default function page({ params }: any) {
   return (
     <>
-      <ProductDetailCard />
+      <ProductDetailCard id={params.id} />
       <ProductDetailImage />
     </>
   );
