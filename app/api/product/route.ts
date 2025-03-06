@@ -14,6 +14,18 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    if (
+      !body ||
+      !body.category ||
+      !body.title ||
+      !body.price ||
+      body.purchase === undefined ||
+      !body.smallDescription ||
+      !body.productImage
+    ) {
+      return NextResponse.json({ message: '필수 값이 누락되었습니다.' }, { status: 400 });
+    }
+
     const newProduct = await prisma.product.create({
       data: {
         category: body.category,

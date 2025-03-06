@@ -7,10 +7,11 @@ export const metadata: Metadata = {
   description: '수정 예정',
 };
 
-export default function page() {
+export default async function page({ params }: { params: Promise<{ id: string }> }) {
+  const id = (await params).id;
   return (
     <>
-      <ProductDetailCard />
+      <ProductDetailCard id={id} />
       <ProductDetailImage />
     </>
   );
