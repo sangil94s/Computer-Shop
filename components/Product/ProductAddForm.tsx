@@ -36,7 +36,7 @@ interface CloudinaryResult {
 export default function ProductAddForm() {
   const router = useRouter();
   useAdminRedirect();
-  const [publicId, setPublicId] = useState("");
+  const [publicId, setPublicId] = useState('');
   const {
     handleSubmit,
     register,
@@ -61,7 +61,7 @@ export default function ProductAddForm() {
       console.error(error);
     }
   };
-  
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-10/12 flex flex-col justify-center m-auto my-2">
@@ -123,29 +123,22 @@ export default function ProductAddForm() {
             <CldUploadWidget
               uploadPreset="skwdfwf2"
               options={{
-                maxFiles: 1
+                maxFiles: 1,
               }}
               onSuccess={(result, widget) => {
-                if (result.event !== "success") return;
+                if (result.event !== 'success') return;
                 const info = result.info as CloudinaryResult;
                 setPublicId(info.public_id);
               }}
             >
               {({ open }) => (
-                <button onClick={() => open()}  className="p-2 bg-blue-500 text-white rounded-md">
+                <button onClick={() => open()} className="p-2 bg-blue-500 text-white rounded-md">
                   이미지
                 </button>
               )}
             </CldUploadWidget>
 
-            {publicId && (
-        <CldImage
-          src={publicId}
-          width={270}
-          height={180}
-          alt="Uploaded Image Not Found"
-        />
-      )}
+            {publicId && <CldImage src={publicId} width={270} height={180} alt="Uploaded Image Not Found" />}
 
             <div className="flex justify-center items-center w-full">
               <Button>상품 추가</Button>
