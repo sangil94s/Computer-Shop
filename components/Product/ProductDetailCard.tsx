@@ -20,7 +20,13 @@ export default async function ProductDetailCard({ id }: { id: string }) {
     <>
       <section className="w-full h-96 grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-1">
         <div className="w-full border border-slate-300 rounded-md my-1">
-          <Image src={imageUrl} width={600} height={300} alt="Product Image" />
+          <Image
+            src={imageUrl}
+            width={600}
+            height={300}
+            alt="Product Image"
+            className="w-full h-auto object-cover rounded-lg"
+          />
         </div>
 
         <div className="w-full border border-slate-300 rounded-md my-1">
