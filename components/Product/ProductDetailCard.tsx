@@ -18,25 +18,25 @@ export default async function ProductDetailCard({ id }: { id: string }) {
   const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${data?.productImage}`;
   return (
     <>
-      <section className="w-full h-96 grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-1">
-        <div className="w-full border border-slate-300 rounded-md my-1">
-          <Image
-            src={imageUrl}
-            width={600}
-            height={300}
-            alt="Product Image"
-            className="w-full h-auto object-cover rounded-lg"
-          />
+      <section className="w-full h-max grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-1">
+        <div className="w-2/3 my-1">
+          <Image src={imageUrl} width={600} height={300} alt="Product Image" className="m-auto" />
         </div>
 
-        <div className="w-full border border-slate-300 rounded-md my-1">
-          <h1>상품명 : {data?.title}</h1>
-          <p>상품 간단 설명 : {data?.smallDescription}</p>
-          <p>가격 : {data?.price.toLocaleString()}원</p>
+        <div className="w-full border border-slate-300 rounded-md my-1 flex flex-col items-center">
+          <h1 className="py-6 text-2xl font-bold">상품명 : {data?.title}</h1>
+          <p className="py-4 font-bold">상품 간단 설명 : {data?.smallDescription}</p>
+          <p className="text-xl font-bold">가격 : {data?.price.toLocaleString()}원</p>
           <p>수량 : 00000</p>
-          <Link href="/cart">
-            <Button>장바구니 담기</Button>
-          </Link>
+          {data?.purchase === true && (
+            <Link href="/cart">
+              <Button>장바구니 담기</Button>
+            </Link>
+          )}
+
+          {data?.purchase === false && (
+            <p className="text-red-600 text-center text-xl font-bold py-2">이 상품은 품절이에요!</p>
+          )}
         </div>
       </section>
     </>
