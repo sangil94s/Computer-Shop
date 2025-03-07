@@ -62,7 +62,7 @@ export default function FaqAddForm() {
           {/* Select 부분 수정 필요함 */}
           <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
           <Select onValueChange={value => setValue('category', value)}>
-            <SelectTrigger className="w-[280px]">
+            <SelectTrigger>
               <SelectValue placeholder="카테고리를 선택하세요" />
             </SelectTrigger>
             <SelectContent>
