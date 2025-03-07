@@ -24,7 +24,7 @@ import { AiFillFileImage } from 'react-icons/ai';
 interface ProductAddTypes {
   category: string;
   title: string;
-  price: string;
+  price: number;
   smallDescription: string;
   productImage: string;
   purchase?: boolean;
@@ -79,8 +79,15 @@ export default function ProductAddForm() {
               <p className="text-red-600 text-center font-bold">상품 설명은 필수 값 입니다.</p>
             )}
 
-            <h4 className="py-1 font-bold">상품 가격</h4>
-            <Input {...register('price', { required: true })} placeholder="상품 가격 들어가는 부분" />
+            <h4 className="py-1 font-bold">상품 가격 - 숫자만 입력</h4>
+            <Input
+              type="number"
+              {...register('price', {
+                required: true,
+                valueAsNumber: true,
+              })}
+              placeholder="상품 가격 들어가는 부분"
+            />
             {errors.price && <p className="text-red-600 text-center font-bold">상품 가격은 필수 값 입니다.</p>}
 
             <div className="my-2">
@@ -94,8 +101,13 @@ export default function ProductAddForm() {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>카테고리 선택 하시오.</SelectLabel>
-                    <SelectItem value="배송">배송</SelectItem>
-                    <SelectItem value="주문">주문</SelectItem>
+                    <SelectItem value="모니터">모니터</SelectItem>
+                    <SelectItem value="그래픽카드">그래픽카드</SelectItem>
+                    <SelectItem value="CPU">CPU</SelectItem>
+                    <SelectItem value="SSD">SSD</SelectItem>
+                    <SelectItem value="HDD">HDD</SelectItem>
+                    <SelectItem value="Ram">Ram</SelectItem>
+                    <SelectItem value="파워 서플라이">파워 서플라이</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

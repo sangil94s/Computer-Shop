@@ -12,7 +12,7 @@ interface ProductAddType {
   id: number;
   category: string;
   title: string;
-  price: string;
+  price: number;
   purchase: boolean;
   smallDescription: string;
   productImage: string;
@@ -48,6 +48,7 @@ export default async function ProductCard() {
                 </CardHeader>
                 <CardContent>
                   <Badge>Category : {item.category}</Badge>
+                  <p className="text-center font-bold py-2">{item.price.toLocaleString()}원</p>
                 </CardContent>
                 <CardFooter>
                   <p>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>

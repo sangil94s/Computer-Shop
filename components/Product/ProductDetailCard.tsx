@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Button } from '../ui/button';
-
+import Link from 'next/link';
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
 export interface PostPageTypes {
@@ -32,9 +32,11 @@ export default async function ProductDetailCard({ id }: { id: string }) {
         <div className="w-full border border-slate-300 rounded-md my-1">
           <h1>상품명 : {data?.title}</h1>
           <p>상품 간단 설명 : {data?.smallDescription}</p>
-          <p>가격 : {data?.price}원</p>
+          <p>가격 : {data?.price.toLocaleString()}원</p>
           <p>수량 : 00000</p>
-          <Button>장바구니 담기</Button>
+          <Link href="/cart">
+            <Button>장바구니 담기</Button>
+          </Link>
         </div>
       </section>
     </>
