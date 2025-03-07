@@ -1,17 +1,16 @@
 // 아마도 상품 카드가 될 부분
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import dayjs from 'dayjs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge } from '../ui/badge';
 import Nodata from '../common/Nodata';
+import ProductRemoveButton from './ProductRemoveButton';
 
 interface ProductAddType {
   id: number;
   category: string;
   title: string;
-  price: string;
+  price: number;
   purchase: boolean;
   smallDescription: string;
   productImage: string;
@@ -30,7 +29,6 @@ async function getProductDatas() {
 
 export default async function ProductCard() {
   const getProductData = await getProductDatas();
-
   return (
     <>
       {getProductData &&
@@ -46,17 +44,19 @@ export default async function ProductCard() {
                   <CardDescription>간단 설명 : {item.smallDescription}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Badge>Category : {item.category}</Badge>
+                  {item.purchase === true ? (
+                    <p className="text-center font-bold py-2">{item.price.toLocaleString()}원</p>
+                  ) : (
+                    <p className="text-center text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
+                  )}
                 </CardContent>
-                <CardFooter>
-                  <p>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>
-                </CardFooter>
+                <ProductRemoveButton ids={item.id} />
               </Card>
             </Link>
           );
         })}
 
-      {getProductData.data.length === 0 && <Nodata />}
+      <div>{getProductData.data.length === 0 && <Nodata />}</div>
     </>
   );
 }

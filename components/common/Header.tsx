@@ -31,26 +31,26 @@ export default function Header() {
             <DropdownMenuTrigger>
               <AiOutlineMenu />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="flex flex-col justify-center items-center">
               {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
                 <DropdownMenuItem className="text-center" onClick={() => router.push('/admin')}>
-                  <AiOutlineSetting /> Admin
+                  <AiOutlineSetting /> 관리자 페이지
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/faq')}>
-                <AiOutlineQuestionCircle /> FAQ
+                <AiOutlineQuestionCircle /> 자주 묻는 질문
               </DropdownMenuItem>
               <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/voc/add')}>
-                <AiOutlineCustomerService /> VOC
+                <AiOutlineCustomerService /> 익명 건의
               </DropdownMenuItem>
               {session && (
-                <DropdownMenuItem className="cursor-pointer" onClick={() => signOut()}>
-                  <AiOutlineUserDelete /> Logout
+                <DropdownMenuItem className="font-bold cursor-pointer" onClick={() => signOut()}>
+                  <AiOutlineUserDelete /> 로그아웃
                 </DropdownMenuItem>
               )}
               {session === null && (
-                <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/auth/logins')}>
-                  <AiOutlineUserDelete /> Login
+                <DropdownMenuItem className="font-bold cursor-pointer" onClick={() => router.push('/auth/logins')}>
+                  <AiOutlineUserDelete /> 로그인
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>

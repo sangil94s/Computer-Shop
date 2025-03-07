@@ -51,7 +51,7 @@ export default function VocAddForm() {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center items-center my-1 w-full min-h-screen"
+        className="flex flex-col justify-center items-center m-auto my-1 w-6/12 min-h-screen"
       >
         <h1 className="text-center text-2xl font-bold py-2">익명 건의 또는 문의 Form</h1>
 
@@ -60,7 +60,7 @@ export default function VocAddForm() {
           {/* Select 부분 수정 필요함 */}
           <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
           <Select onValueChange={value => setValue('category', value)}>
-            <SelectTrigger className="w-[280px]">
+            <SelectTrigger>
               <SelectValue placeholder="카테고리를 선택하세요" />
             </SelectTrigger>
             <SelectContent>
@@ -84,7 +84,9 @@ export default function VocAddForm() {
           <TextEditor value={watch('description') || ''} onChange={content => setValue('description', content)} />
           {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
-        <Button type="submit">추가</Button>
+        <Button type="submit" className="w-full">
+          추가
+        </Button>
       </form>
     </>
   );

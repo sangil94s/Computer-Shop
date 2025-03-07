@@ -38,7 +38,7 @@ export default async function VocDetailCard() {
                 <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
               </CardContent>
               <CardFooter>
-                <p>Create Time : {dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>
+                <p className="text-sm font-bold py-2">생성일 : {dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>
               </CardFooter>
               <VocDetailRemoveButton ids={item.id} />
             </Card>

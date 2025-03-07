@@ -4,7 +4,7 @@ import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 import { Button } from '@/components/ui/button';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-
+import { AiOutlineDelete } from 'react-icons/ai';
 export default function VocDetailRemoveButton({ ids }: { ids: number }) {
   useAdminRedirect();
   const router = useRouter();
@@ -24,7 +24,9 @@ export default function VocDetailRemoveButton({ ids }: { ids: number }) {
 
   return (
     <>
-      <Button onClick={() => handleDelete()}>삭제</Button>
+      <Button className="w-full my-1" onClick={() => handleDelete()}>
+        <AiOutlineDelete /> 삭제
+      </Button>
     </>
   );
 }
