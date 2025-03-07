@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '../ui/badge';
 import Nodata from '../common/Nodata';
+import ProductRemoveButton from './ProductRemoveButton';
 
 interface ProductAddType {
   id: number;
@@ -51,12 +52,13 @@ export default async function ProductCard() {
                 <CardFooter>
                   <p>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</p>
                 </CardFooter>
+                <ProductRemoveButton ids={item.id} />
               </Card>
             </Link>
           );
         })}
 
-      {getProductData.data.length === 0 && <Nodata />}
+      <div>{getProductData.data.length === 0 && <Nodata />}</div>
     </>
   );
 }
