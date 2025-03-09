@@ -44,4 +44,13 @@ model Product {
   smallDescription String @db.VarChar(15) // 상품에 대한 간단 소개
   productImage String @db.Text // 상품 이미지 
   createDate   DateTime    @default(now())
+  productDetail ProductDetail?
 } // 상품 관련 Model
+
+model ProductDetail {
+  id      Int     @id @default(autoincrement())
+  productId Int @unique 
+  productDetailImage String @db.Text
+  createDate   DateTime    @default(now())
+  product Product @relation(fields: [productId],references: [id]) 
+}

@@ -3,7 +3,6 @@
 
 import GetVOC from '@/components/Admin/GetVOC/GetVoc';
 import { ProductCategoryChart } from '@/components/Admin/ProductCategory/ProductCategoryChart';
-import UserInfomation from '@/components/Admin/UserInfomation/UserInfomation';
 
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -13,10 +12,6 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div className="grid grid-cols-2 gap-2 w-full">
-      <section>
-        <UserInfomation />
-      </section>
-
       <section>
         <GetVOC />
 
