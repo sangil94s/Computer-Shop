@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET() {
   try {
     const data = await prisma.product.findMany();
-    return Response.json({ data }, { status: 200 });
+    return Response.json(data, { status: 200 });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ message: 'fail' }, { status: 500 });

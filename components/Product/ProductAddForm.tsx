@@ -105,8 +105,8 @@ export default function ProductAddForm() {
                     <SelectItem value="CPU">CPU</SelectItem>
                     <SelectItem value="SSD">SSD</SelectItem>
                     <SelectItem value="HDD">HDD</SelectItem>
-                    <SelectItem value="Ram">Ram</SelectItem>
-                    <SelectItem value="Power">파워 서플라이</SelectItem>
+                    <SelectItem value="RAM">Ram</SelectItem>
+                    <SelectItem value="POWER">파워 서플라이</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
