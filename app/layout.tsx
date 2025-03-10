@@ -9,6 +9,19 @@ import SessionProvider from '@/components/Auth/SessionProvider';
 export const metadata: Metadata = {
   title: 'Computer-Shop',
   description: '개인프로젝트로 컴퓨터 관련 용품을 판매하는 쇼핑몰을 만듭니다.',
+  openGraph: {
+    title: 'Computer-Shop',
+    description: '개인프로젝트로 컴퓨터 관련 용품을 판매하는 쇼핑몰을 만듭니다.',
+    images: [
+      {
+        url: 'https://computer-shop-mu.vercel.app/opens.webp',
+        width: 800,
+        height: 600,
+        alt: '기본 이미지 설명',
+      },
+    ],
+    siteName: 'Computer-Shop',
+  },
 };
 
 export default function RootLayout({
