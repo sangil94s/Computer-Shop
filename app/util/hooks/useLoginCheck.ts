@@ -7,7 +7,6 @@ import { useSession } from 'next-auth/react';
 const useLoginCheck = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  console.log(session);
   useEffect(() => {
     if (status === 'loading') return;
     if (session?.user?.name) {

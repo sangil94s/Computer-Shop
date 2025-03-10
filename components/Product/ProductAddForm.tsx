@@ -100,13 +100,13 @@ export default function ProductAddForm() {
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>카테고리 선택 하시오.</SelectLabel>
-                    <SelectItem value="모니터">모니터</SelectItem>
-                    <SelectItem value="그래픽카드">그래픽카드</SelectItem>
+                    <SelectItem value="Monitor">모니터</SelectItem>
+                    <SelectItem value="VGA">그래픽카드</SelectItem>
                     <SelectItem value="CPU">CPU</SelectItem>
                     <SelectItem value="SSD">SSD</SelectItem>
                     <SelectItem value="HDD">HDD</SelectItem>
-                    <SelectItem value="Ram">Ram</SelectItem>
-                    <SelectItem value="파워 서플라이">파워 서플라이</SelectItem>
+                    <SelectItem value="RAM">Ram</SelectItem>
+                    <SelectItem value="POWER">파워 서플라이</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
