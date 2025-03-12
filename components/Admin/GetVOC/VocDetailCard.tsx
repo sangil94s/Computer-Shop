@@ -3,14 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import dayjs from 'dayjs';
 import VocDetailRemoveButton from './VocDetailRemoveButton';
 import Nodata from '@/components/common/Nodata';
-
-interface VOCType {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  createDate: string;
-}
+import { FAQListTypes } from '@/types/types';
 
 async function getDatas() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/voc`, { cache: 'no-store' });
@@ -28,7 +21,7 @@ export default async function VocDetailCard() {
     <>
       <div className="grid grid-cols-1 lg:grid-cols-4 justify-items-center w-full">
         {getData.data &&
-          getData.data.map((item: VOCType) => (
+          getData.data.map((item: FAQListTypes) => (
             <Card key={item.id} className="my-1">
               <CardHeader>
                 <CardTitle>Title: {item.title}</CardTitle>

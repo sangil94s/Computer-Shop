@@ -17,12 +17,8 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import TextEditor from '@/app/util/TextEditor';
+import { FAQAddTypes } from '@/types/types';
 
-interface AddTypes {
-  category: string;
-  title: string;
-  description: string;
-}
 export default function VocAddForm() {
   const router = useRouter();
 
@@ -32,9 +28,9 @@ export default function VocAddForm() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<AddTypes>();
+  } = useForm<FAQAddTypes>();
 
-  const onSubmit = async (data: AddTypes) => {
+  const onSubmit = async (data: FAQAddTypes) => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/voc`, {
         category: data.category,

@@ -11,10 +11,6 @@ import {
 } from '@/components/ui/select';
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
-export interface PostPageTypes {
-  params: { id: string };
-}
-
 export default async function ProductDetailCard({ id }: { id: string }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${id}`, { cache: 'no-store' });
   if (!res.ok) {

@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 
 type Params = Promise<{ id: string }>;
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const {id} = await params;
+  const { id } = await params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${id}`, { cache: 'no-store' });
 
   if (!res.ok) {

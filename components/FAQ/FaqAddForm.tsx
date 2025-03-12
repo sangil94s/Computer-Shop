@@ -16,13 +16,9 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import TextEditor from '@/app/util/TextEditor';
-
+import { FAQAddTypes } from '@/types/types';
 // 아마도 FAQ를 작성하는 Form 역할
-interface AddTypes {
-  category: string;
-  title: string;
-  description: string;
-}
+
 export default function FaqAddForm() {
   const router = useRouter();
   useAdminRedirect();
@@ -33,9 +29,9 @@ export default function FaqAddForm() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<AddTypes>();
+  } = useForm<FAQAddTypes>();
 
-  const onSubmit = async (data: AddTypes) => {
+  const onSubmit = async (data: FAQAddTypes) => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, {
         category: data.category,

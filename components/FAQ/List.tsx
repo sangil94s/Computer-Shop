@@ -1,13 +1,8 @@
 // FAQ List Components
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-interface FAQTypes {
-  id: number;
-  category: string;
-  title: string;
-  description: string;
-  createDate: string;
-}
+import { FAQListTypes } from '@/types/types';
+
 async function getFaqDatas() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, { cache: 'no-store' });
 
@@ -24,7 +19,7 @@ export default async function FaqList() {
   return (
     <div className="flex flex-col justify-center items-center">
       {getFaqData &&
-        getFaqData.data.map((item: FAQTypes) => (
+        getFaqData.data.map((item: FAQListTypes) => (
           <Accordion key={item.id} type="single" collapsible className="w-11/12 my-2">
             <AccordionItem value="item-1">
               <AccordionTrigger>

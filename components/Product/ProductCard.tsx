@@ -8,17 +8,7 @@ import ProductRemoveButton from './ProductRemoveButton';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import ProductFilter from './ProductFilter';
-
-interface ProductAddType {
-  id: number;
-  category: string;
-  title: string;
-  price: number;
-  purchase: boolean;
-  smallDescription: string;
-  productImage: string;
-  createDate: string;
-}
+import { ProductCardTypes } from '@/types/types';
 
 const fetchProducts = async (category: string | null) => {
   const url = category
@@ -48,7 +38,7 @@ export default function ProductCard() {
       <ProductFilter onCategoryChange={setSelectedCategory} />
       {error && <p>데이터를 불러오는 중 오류 발생: {error.message}</p>}
       {products?.length > 0 ? (
-        products.map((item: ProductAddType) => {
+        products.map((item: ProductCardTypes) => {
           const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
           const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${item.productImage}`;
           return (

@@ -10,13 +10,10 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { CloudinaryResult } from '@/types/types';
 interface ProductDetailType {
   productDetailImage: string;
   productId: number;
-}
-
-interface CloudinaryResult {
-  public_id: string;
 }
 export default function ProductDetailAddForm({ id }: { id: string }) {
   useAdminRedirect();
