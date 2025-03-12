@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import {
@@ -22,16 +21,9 @@ export default async function ProductDetailCard({ id }: { id: string }) {
     throw new Error('데이터 호출 실패');
   }
   const data = await res.json();
-
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${data?.productImage}`;
   return (
     <>
-      <section className="w-full h-max grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-1">
-        <div className="w-2/3 my-1">
-          <Image src={imageUrl} width={600} height={300} alt="Product Image" className="m-auto" />
-        </div>
-
+      <section className="w-full h-max">
         <div className="w-full my-1 flex flex-col items-center">
           <h1 className="py-6 text-3xl font-bold">상품명 : {data?.title}</h1>
           <p className="py-2 font-bold">상품 간단 설명 : {data?.smallDescription}</p>
