@@ -20,18 +20,8 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { AiFillFileImage } from 'react-icons/ai';
-interface ProductAddTypes {
-  category: string;
-  title: string;
-  price: number;
-  smallDescription: string;
-  productImage: string;
-  purchase?: boolean;
-}
+import { CloudinaryResult, ProductAddFormTypes } from '@/types/types';
 
-interface CloudinaryResult {
-  public_id: string;
-}
 export default function ProductAddForm() {
   const router = useRouter();
   useAdminRedirect();
@@ -42,9 +32,9 @@ export default function ProductAddForm() {
     formState: { errors },
     setValue,
     watch,
-  } = useForm<ProductAddTypes>();
+  } = useForm<ProductAddFormTypes>();
 
-  const onSubmit = async (data: ProductAddTypes) => {
+  const onSubmit = async (data: ProductAddFormTypes) => {
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product`, {
         category: data.category,
