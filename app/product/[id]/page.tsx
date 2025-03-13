@@ -25,7 +25,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
   const id = (await params).id;
   return (
     <>
-      <div className="grid grid-cols-2">
+      <div className="flex flex-col lg:flex-row">
         <ProductDetailMainImage id={id} />
         <ProductDetailCard id={id} />
       </div>
