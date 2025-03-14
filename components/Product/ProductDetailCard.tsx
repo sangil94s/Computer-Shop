@@ -40,13 +40,12 @@ export default function ProductDetailCard({ id }: { id: string }) {
 
   return (
     <>
-      <section className="w-full h-max">
-        <div className="w-full my-1 flex flex-col items-center">
-          <h1 className="py-6 text-3xl font-bold">상품명 : {products?.title}</h1>
-          <p className="py-2 font-bold">상품 간단 설명 : {products?.smallDescription}</p>
-          <p className="py-4 text-2xl font-bold">가격 : {products?.price.toLocaleString()}원</p>
+      <section className="w-full lg:w-1/6 h-max">
+        <div className="w-full m-1 flex flex-col justify-center items-center lg:items-start">
+          <h1 className="pt-4 pb-10 text-xl lg:text-3xl font-bold">상품명 : {products?.title}</h1>
+          <p className="pb-10">상품 간단 설명 : {products?.smallDescription}</p>
 
-          <div className="my-1 w-6/12">
+          <div className="my-4 w-7/12">
             <label className="font-bold text-base">수량을 선택하시오</label>
             <Select onValueChange={value => setQuantity(Number(value))}>
               <SelectTrigger>
@@ -54,7 +53,7 @@ export default function ProductDetailCard({ id }: { id: string }) {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel>수량을 선택 하시오.</SelectLabel>
+                  <SelectLabel defaultValue={1}>수량을 선택 하시오.</SelectLabel>
                   <SelectItem value="1">1</SelectItem>
                   <SelectItem value="2">2</SelectItem>
                   <SelectItem value="3">3</SelectItem>
@@ -65,12 +64,19 @@ export default function ProductDetailCard({ id }: { id: string }) {
             </Select>
           </div>
 
-          <h3 className="py-4 text-2xl font-bold">최종 가격 : {totalPrice.toLocaleString()} 원</h3>
+          <h3 className="py-8 text-2xl font-bold border-y-2 border-slate-300">
+            최종 가격 : {totalPrice.toLocaleString()} 원
+          </h3>
 
           {products?.purchase === true && (
-            <Link className="w-max" href="/cart">
-              <Button disabled={session === null}>장바구니 담기</Button>
-            </Link>
+            <>
+              <Link href="/cart">
+                <Button className="my-4 font-bold" disabled={session === null}>
+                  장바구니 담기
+                </Button>
+              </Link>
+              <h4 className="py-4 text-red-600 font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
+            </>
           )}
 
           {products?.purchase === false && (

@@ -10,11 +10,11 @@ export default async function ProductDetailMainImage({ id }: { id: string }) {
   const data = await res.json();
 
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${data?.productImage}`;
+  const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_400,h_400,c_fill/${data?.productImage}`;
 
   return (
     <>
-      <Image src={imageUrl} width={600} height={300} alt="Product Image" className="m-auto rounded-md" />
+      <Image src={imageUrl} width={600} height={300} alt="Product Image" className="mx-2 lg:mx-12 rounded-lg" />
     </>
   );
 }

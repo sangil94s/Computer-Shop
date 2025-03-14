@@ -37,35 +37,31 @@ export default function ProductCard() {
     <>
       <ProductFilter onCategoryChange={setSelectedCategory} />
       {error && <p>데이터를 불러오는 중 오류 발생: {error.message}</p>}
-      {products?.length > 0 ? (
-        products.map((item: ProductCardTypes) => {
-          const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-          const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${item.productImage}`;
-          return (
-            <div
-              className="flex flex-row justify-center items-center m-auto"
-              key={item.id}
-              onClick={() => router.push(`/product/${item.id}`)}
-            >
-              <section className="border border-slate-300 px-1 my-1">
-                <h1 className="text-base lg:text-xl font-bold py-2">제목 : {item.title}</h1>
-                <Image src={imageUrl} width={300} height={300} alt="Product Image" className="rounded-md" />
-                <p className="font-bold py-2">간단 설명 : {item.smallDescription}</p>
+      <div className="grid grid-rows-1 lg:grid-cols-4 justify-items-center gap-2 m-auto">
+        {products?.length > 0 ? (
+          products.map((item: ProductCardTypes) => {
+            const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+            const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_300,h_300,c_fill/${item.productImage}`;
+            return (
+              <div className="cursor-pointer" key={item.id} onClick={() => router.push(`/product/${item.id}`)}>
+                <section className="px-1 my-1">
+                  <Image src={imageUrl} width={300} height={300} alt="Product Image" className="rounded-md" />
+                  <h1 className="text-base lg:text-xl font-bold py-2">제목 : {item.title}</h1>
+                  {item.purchase === true ? (
+                    <p className="text-center font-bold py-2">{item.price.toLocaleString()}원</p>
+                  ) : (
+                    <p className="text-center text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
+                  )}
 
-                {item.purchase === true ? (
-                  <p className="text-center font-bold py-2">{item.price.toLocaleString()}원</p>
-                ) : (
-                  <p className="text-center text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
-                )}
-
-                <ProductRemoveButton ids={item.id} />
-              </section>
-            </div>
-          );
-        })
-      ) : (
-        <Nodata />
-      )}
+                  <ProductRemoveButton ids={item.id} />
+                </section>
+              </div>
+            );
+          })
+        ) : (
+          <Nodata />
+        )}
+      </div>
     </>
   );
 }
