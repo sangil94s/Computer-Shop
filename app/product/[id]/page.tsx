@@ -14,10 +14,26 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     throw new Error('데이터 호출 실패');
   }
   const data = await res.json();
+  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const imageUrl = data.productImage
+    ? `https://res.cloudinary.com/${cloudName}/image/upload/${data.productImage}`
+    : `${process.env.NEXT_PUBLIC_DEPLOY_URL}/opens.webp`;
 
   return {
     title: `${data.title} | Computer-Shop`,
     description: data.description || '상품 상세 페이지입니다.',
+    openGraph: {
+      title: `${data.title} | Computer-Shop`,
+      description: data.description || '상품 상세 페이지입니다.',
+      images: [
+        {
+          url: imageUrl,
+          width: 400,
+          height: 400,
+          alt: '카톡 썸네일 이미지',
+        },
+      ],
+    },
   };
 }
 
