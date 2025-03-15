@@ -22,7 +22,7 @@ const fetchProducts = async ({ id }: { id: string }) => {
 
 export default function ProductDetailCard({ id }: { id: string }) {
   const { data: products } = useQuery({
-    queryKey: ['productDetail'],
+    queryKey: ['productDetail', id],
     queryFn: () => fetchProducts({ id }),
     staleTime: 1000 * 60 * 5,
   });
