@@ -14,11 +14,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Alphas {
-  id      Int     @id @default(autoincrement())
-  bios     String
-}
-
 model Vocs {
   id      Int     @id @default(autoincrement())
   category String @db.VarChar(10) // 문의 카테고리
@@ -45,6 +40,7 @@ model Product {
   productImage String @db.Text // 상품 이미지 
   createDate   DateTime    @default(now())
   productDetail ProductDetail?
+  cart Cart?
 } // 상품 관련 Model
 
 model ProductDetail {
@@ -54,3 +50,15 @@ model ProductDetail {
   createDate   DateTime    @default(now())
   product Product @relation(fields: [productId],references: [id]) 
 }
+
+// 장바구니 Model
+model Cart {
+  id      Int     @id @default(autoincrement())
+  productId Int @unique 
+  title String @db.VarChar(25) // 장바구니에 들어간 상품 명
+  totalPrice String @db.VarChar(10) // 사용자가 최종 선택한 가격
+  totalCount String @db.VarChar(10) // 사용자가 상품 몇개를 장바구니에 넣었는지
+  usernick String @db.VarChar(10) // 장바구니에 상품을 넣은 사용자의 닉네임
+  createDate   DateTime    @default(now())
+  product Product @relation(fields: [productId],references: [id]) 
+} // 장바구니 
