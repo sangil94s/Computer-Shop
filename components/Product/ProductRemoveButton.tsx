@@ -3,23 +3,20 @@
 import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 import { Button } from '../ui/button';
 import axios from 'axios';
-
-import { useRouter } from 'next/navigation';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useSession } from 'next-auth/react';
 
 export default function ProductRemoveButton({ ids }: { ids: number }) {
   useAdminRedirect();
-  const router = useRouter();
 
   const handleDelete = async () => {
-    if (!confirm('이 문의를 삭제할 건가요???')) {
+    if (!confirm('이 상품을 삭제할 건가요???')) {
       return;
     }
     try {
       await axios.delete(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${ids}`);
       alert('삭제 성공!');
-      router.push('/');
+      location.reload();
     } catch (error) {
       console.error(error);
     }

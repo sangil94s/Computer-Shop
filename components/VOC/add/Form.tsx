@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import TextEditor from '@/app/util/TextEditor';
@@ -28,6 +28,7 @@ export default function VocAddForm() {
     formState: { errors },
     setValue,
     watch,
+    control,
   } = useForm<FAQAddTypes>();
 
   const onSubmit = async (data: FAQAddTypes) => {
@@ -55,18 +56,26 @@ export default function VocAddForm() {
           {' '}
           {/* Select 부분 수정 필요함 */}
           <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
-          <Select onValueChange={value => setValue('category', value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="카테고리를 선택하세요" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>카테고리 선택 하시오.</SelectLabel>
-                <SelectItem value="배송">배송</SelectItem>
-                <SelectItem value="주문">주문</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Controller
+            name="category"
+            control={control}
+            rules={{ required: '카테고리 선택은 필수 값 입니다.' }}
+            render={({ field }) => (
+              <Select onValueChange={field.onChange} value={field.value}>
+                <SelectTrigger>
+                  <SelectValue placeholder="카테고리를 선택하세요" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>카테고리 선택 하시오.</SelectLabel>
+                    <SelectItem value="배송">배송</SelectItem>
+                    <SelectItem value="주문">주문</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            )}
+          />
+          {errors.category && <p className="text-red-600 text-center font-bold">카테고리 선택은 필수 값 입니다.</p>}
         </div>
 
         <div className="my-2 w-full">
