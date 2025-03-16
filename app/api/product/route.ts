@@ -12,7 +12,16 @@ const ProductSchema = z.object({
 });
 export async function GET() {
   try {
-    const data = await prisma.product.findMany();
+    const data = await prisma.product.findMany({
+      select: {
+        id: true,
+        title: true,
+        category: true,
+        productImage: true,
+        price: true,
+        purchase: true
+      }
+    });
     return Response.json(data, { status: 200 });
   } catch (e) {
     console.error(e);
