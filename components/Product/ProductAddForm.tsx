@@ -17,7 +17,7 @@ import useAdminRedirect from '@/app/util/hooks/useAdminRedirect';
 import { CldUploadWidget, CldImage } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useState } from 'react';
 import { AiFillFileImage } from 'react-icons/ai';
 import { CloudinaryResult, ProductAddFormTypes } from '@/types/types';
@@ -30,8 +30,7 @@ export default function ProductAddForm() {
     handleSubmit,
     register,
     formState: { errors },
-    setValue,
-    watch,
+    control,
   } = useForm<ProductAddFormTypes>();
 
   const onSubmit = async (data: ProductAddFormTypes) => {
@@ -83,40 +82,60 @@ export default function ProductAddForm() {
               {' '}
               {/* Select 부분 수정 필요함 */}
               <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
-              <Select onValueChange={value => setValue('category', value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="카테고리를 선택하세요" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>카테고리 선택 하시오.</SelectLabel>
-                    <SelectItem value="Monitor">모니터</SelectItem>
-                    <SelectItem value="VGA">그래픽카드</SelectItem>
-                    <SelectItem value="CPU">CPU</SelectItem>
-                    <SelectItem value="SSD">SSD</SelectItem>
-                    <SelectItem value="HDD">HDD</SelectItem>
-                    <SelectItem value="RAM">Ram</SelectItem>
-                    <SelectItem value="POWER">파워 서플라이</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="category"
+                control={control}
+                rules={{ required: '카테고리 선택은 필수 값 입니다.' }}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="카테고리를 선택하세요" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>카테고리 선택 하시오.</SelectLabel>
+                        <SelectItem value="Monitor">모니터</SelectItem>
+                        <SelectItem value="VGA">그래픽카드</SelectItem>
+                        <SelectItem value="CPU">CPU</SelectItem>
+                        <SelectItem value="SSD">SSD</SelectItem>
+                        <SelectItem value="HDD">HDD</SelectItem>
+                        <SelectItem value="RAM">Ram</SelectItem>
+                        <SelectItem value="POWER">파워 서플라이</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.category && <p className="text-red-600 text-center font-bold">카테고리 선택은 필수 값 입니다.</p>}
             </div>
 
             {/* 상품 구매 가능 여부 */}
             <h4 className="py-1 font-bold">구매 가능 여부</h4>
-            <Select onValueChange={value => setValue('purchase', value === 'true')}>
-              <SelectTrigger>
-                <SelectValue placeholder="구매 가능 여부 선택" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>구매 가능 여부 선택</SelectLabel>
-                  <SelectItem value="true">구매 가능</SelectItem>
-                  <SelectItem value="false">품절</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-
+            <Controller
+              name="purchase"
+              control={control}
+              rules={{ required: '구매 가능 여부 선택은 필수 값 입니다.' }}
+              render={({ field }) => (
+                <Select
+                  onValueChange={value => field.onChange(value === 'true')}
+                  value={field.value ? 'true' : 'false'}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="구매 가능 여부 선택" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>구매 가능 여부 선택</SelectLabel>
+                      <SelectItem value="true">구매 가능</SelectItem>
+                      <SelectItem value="false">품절</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.purchase && (
+              <p className="text-red-600 text-center font-bold">구매 가능 여부 선택은 필수 값 입니다.</p>
+            )}
             {/* Select로? */}
 
             {/* 이미지 - 클라우디너리로 */}
