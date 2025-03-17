@@ -19,8 +19,8 @@ export async function GET() {
         category: true,
         productImage: true,
         price: true,
-        purchase: true
-      }
+        purchase: true,
+      },
     });
     return Response.json(data, { status: 200 });
   } catch (e) {
