@@ -37,8 +37,6 @@ export default function ProductDetailCard({ id }: { id: string }) {
       setTotalPrice(products.price * quantity);
     }
   }, [quantity, products]);
-  //console.log(session?.user.nickname)
-
   return (
     <>
       <section className="w-full lg:w-1/6 h-max">

@@ -54,7 +54,6 @@ export default function VocAddForm() {
 
         <div className="my-2">
           {' '}
-          {/* Select 부분 수정 필요함 */}
           <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
           <Controller
             name="category"

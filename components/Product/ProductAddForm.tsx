@@ -80,7 +80,6 @@ export default function ProductAddForm() {
 
             <div className="my-2">
               {' '}
-              {/* Select 부분 수정 필요함 */}
               <label className="py-1 font-bold text-base">카테고리를 선택하시오</label>
               <Controller
                 name="category"
@@ -136,7 +135,6 @@ export default function ProductAddForm() {
             {errors.purchase && (
               <p className="text-red-600 text-center font-bold">구매 가능 여부 선택은 필수 값 입니다.</p>
             )}
-            {/* Select로? */}
 
             {/* 이미지 - 클라우디너리로 */}
             <CldUploadWidget
