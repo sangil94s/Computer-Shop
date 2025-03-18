@@ -69,6 +69,7 @@ export default function VocAddForm() {
                     <SelectLabel>카테고리 선택 하시오.</SelectLabel>
                     <SelectItem value="배송">배송</SelectItem>
                     <SelectItem value="주문">주문</SelectItem>
+                    <SelectItem value="사이트 이용">사이트 이용</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
