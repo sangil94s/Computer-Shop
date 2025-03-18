@@ -14,7 +14,7 @@ export default async function ProductDetailMainImage({ id }: { id: string }) {
 
   return (
     <>
-      <Image src={imageUrl} width={600} height={300} alt="Product Image" className="mx-2 lg:mx-12 rounded-lg" />
+      <Image src={imageUrl} width={500} height={300} alt="Product Image" className="mx-2 lg:mx-12 rounded-lg" />
     </>
   );
 }

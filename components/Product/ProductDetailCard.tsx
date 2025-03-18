@@ -1,6 +1,5 @@
 'use client';
 import { Button } from '../ui/button';
-import Link from 'next/link';
 import {
   Select,
   SelectContent,
@@ -14,6 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import { BsCartPlus } from 'react-icons/bs';
+import { useRouter } from 'next/navigation';
 
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
@@ -23,6 +23,7 @@ const fetchProducts = async ({ id }: { id: string }) => {
 };
 
 export default function ProductDetailCard({ id }: { id: string }) {
+  const router = useRouter()
   const { data: products } = useQuery({
     queryKey: ['productDetail', id],
     queryFn: () => fetchProducts({ id }),
@@ -39,9 +40,10 @@ export default function ProductDetailCard({ id }: { id: string }) {
       setTotalPrice(products.price * quantity);
     }
   }, [quantity, products]);
+
   return (
     <>
-      <section className="w-full lg:w-1/6 h-max">
+      <section className="w-full lg:w-2/6 h-max">
         <div className="w-full m-1 flex flex-col justify-center items-center lg:items-start">
           <section>
             <label className="font-bold">상품명</label>
@@ -77,11 +79,11 @@ export default function ProductDetailCard({ id }: { id: string }) {
           </section>
           {products?.purchase === true && (
             <>
-              <Link href="/cart">
-                <Button className="my-4 font-bold" disabled={session === null}>
+              
+                <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push('/cart')}>
                   <BsCartPlus /> 장바구니 담기
                 </Button>
-              </Link>
+              
               <h4 className="py-4 text-red-600 text-base font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
             </>
           )}
