@@ -19,7 +19,11 @@ export default async function ProductDetailImage({ id }: { id: string }) {
   return (
     <div className="w-full h-max flex flex-col justify-center items-center border-t-2 border-slate-200 my-1">
       <h1 className="text-center text-xl font-bold py-2">상세 이미지</h1>
-      {data !== null ? <Image src={imageUrl} width={400} height={300} alt="이미지" /> : <Nodata />}
+      {data !== null ? (
+        <Image src={imageUrl} width={400} height={300} alt="이미지" className="rounded-lg" />
+      ) : (
+        <Nodata />
+      )}
     </div>
   );
 }

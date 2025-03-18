@@ -41,7 +41,7 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full h-max flex flex-col justify-center items-center">
         <h1>보충 이미지 추가</h1>
-        <Input defaultValue={parseFloat(id)} {...register('productId', { required: true })} />
+        <Input className="opacity-0" defaultValue={parseFloat(id)} {...register('productId', { required: true })} />
         {errors.productId && <p className="text-red-600 text-center font-bold">ID는 필수 값 입니다.</p>}
         <CldUploadWidget
           uploadPreset="skwdfwf2"

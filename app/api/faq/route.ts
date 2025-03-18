@@ -5,7 +5,7 @@ import { z } from 'zod';
 const faqSchema = z.object({
   category: z.string().min(2, '카테고리는 최소 2글자 이상이어야 합니다.'),
   title: z.string().min(3, '제목은 최소 3글자 이상이어야 합니다.'),
-  description: z.string().min(3, '설명은 최소 3글자 이상이어야 합니다.'),
+  description: z.string().min(15, '설명은 최소 15글자 이상이어야 합니다.'),
 });
 
 export async function GET() {

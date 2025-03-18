@@ -9,7 +9,7 @@ export default function TopButton() {
 
   return (
     <>
-      <div onClick={scrollTop} className="fixed bottom-16 right-8 z-50 border rounded-full bg-white shadow-lg">
+      <div onClick={scrollTop} className="fixed bottom-16 right-8 z-50 rounded-full bg-white">
         <AiFillCaretUp className="text-3xl cursor-pointer" />
       </div>
     </>

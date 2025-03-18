@@ -13,6 +13,8 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import { BsCartPlus } from 'react-icons/bs';
+
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
 const fetchProducts = async ({ id }: { id: string }) => {
@@ -41,9 +43,15 @@ export default function ProductDetailCard({ id }: { id: string }) {
     <>
       <section className="w-full lg:w-1/6 h-max">
         <div className="w-full m-1 flex flex-col justify-center items-center lg:items-start">
-          <h1 className="pt-4 pb-10 text-xl lg:text-3xl font-bold">상품명 : {products?.title}</h1>
-          <p className="pb-10">상품 간단 설명 : {products?.smallDescription}</p>
+          <section>
+            <label className="font-bold">상품명</label>
+            <h1 className="pt-2 pb-10 text-xl lg:text-3xl font-bold">{products?.title}</h1>
+          </section>
 
+          <section>
+            <label className="font-bold">상품 간단 설명</label>
+            <p className="pb-10 pt-2">{products?.smallDescription}</p>
+          </section>
           <div className="my-4 w-7/12">
             <label className="font-bold text-base">수량을 선택하시오</label>
             <Select onValueChange={value => setQuantity(Number(value))}>
@@ -63,18 +71,18 @@ export default function ProductDetailCard({ id }: { id: string }) {
             </Select>
           </div>
 
-          <h3 className="py-8 text-2xl font-bold border-y-2 border-slate-300">
-            최종 가격 : {totalPrice.toLocaleString()} 원
-          </h3>
-
+          <section>
+            <label className="font-bold">최종 가격</label>
+            <h3 className="pt-2 pb-4 text-2xl font-bold">{totalPrice.toLocaleString()} 원</h3>
+          </section>
           {products?.purchase === true && (
             <>
               <Link href="/cart">
                 <Button className="my-4 font-bold" disabled={session === null}>
-                  장바구니 담기
+                  <BsCartPlus /> 장바구니 담기
                 </Button>
               </Link>
-              <h4 className="py-4 text-red-600 font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
+              <h4 className="py-4 text-red-600 text-base font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
             </>
           )}
 

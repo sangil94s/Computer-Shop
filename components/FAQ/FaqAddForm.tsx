@@ -71,6 +71,7 @@ export default function FaqAddForm() {
                     <SelectLabel>카테고리 선택 하시오.</SelectLabel>
                     <SelectItem value="배송">배송</SelectItem>
                     <SelectItem value="주문">주문</SelectItem>
+                    <SelectItem value="사이트 이용">사이트 이용</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -90,7 +91,9 @@ export default function FaqAddForm() {
           <TextEditor value={watch('description') || ''} onChange={content => setValue('description', content)} />
           {errors.description && <p className="text-red-600 text-center font-bold">설명은 필수 값 입니다.</p>}
         </div>
-        <Button type="submit">추가</Button>
+        <Button className="w-full" type="submit">
+          추가
+        </Button>
       </form>
     </>
   );
