@@ -33,7 +33,7 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="flex flex-col justify-center items-center">
               {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
-                <DropdownMenuItem className="text-center" onClick={() => router.push('/admin')}>
+                <DropdownMenuItem className="text-center cursor-pointer" onClick={() => router.push('/admin')}>
                   <AiOutlineSetting /> 관리자 페이지
                 </DropdownMenuItem>
               )}

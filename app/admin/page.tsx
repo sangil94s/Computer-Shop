@@ -1,6 +1,7 @@
 // 관리자 페이지
 // 추후 hook 등 으로 해서 특정 사용자만 들어오도록
 
+import GetFAQ from '@/components/Admin/GetFAQ/GetFAQ';
 import GetVOC from '@/components/Admin/GetVOC/GetVoc';
 import { ProductCategoryChart } from '@/components/Admin/ProductCategory/ProductCategoryChart';
 
@@ -14,7 +15,7 @@ export default function page() {
     <div className="grid grid-cols-2 gap-2 w-full">
       <section>
         <GetVOC />
-
+        <GetFAQ />
         <ProductCategoryChart />
       </section>
     </div>

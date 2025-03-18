@@ -13,6 +13,8 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import { BsCartPlus } from 'react-icons/bs';
+
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
 const fetchProducts = async ({ id }: { id: string }) => {
@@ -71,10 +73,10 @@ export default function ProductDetailCard({ id }: { id: string }) {
             <>
               <Link href="/cart">
                 <Button className="my-4 font-bold" disabled={session === null}>
-                  장바구니 담기
+                  <BsCartPlus /> 장바구니 담기
                 </Button>
               </Link>
-              <h4 className="py-4 text-red-600 font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
+              <h4 className="py-4 text-red-600 text-base font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
             </>
           )}
 

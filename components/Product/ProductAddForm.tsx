@@ -19,7 +19,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useForm, Controller } from 'react-hook-form';
 import { useState } from 'react';
-import { AiFillFileImage } from 'react-icons/ai';
+import { AiFillFileImage, AiOutlinePlus } from 'react-icons/ai';
 import { CloudinaryResult, ProductAddFormTypes } from '@/types/types';
 
 export default function ProductAddForm() {
@@ -158,7 +158,9 @@ export default function ProductAddForm() {
             {publicId && <CldImage src={publicId} width={270} height={180} alt="Uploaded Image Not Found" />}
 
             <div className="flex justify-center items-center w-full">
-              <Button className="w-full my-2">상품 추가</Button>
+              <Button className="w-full my-2">
+                <AiOutlinePlus /> 상품 추가
+              </Button>
             </div>
           </CardContent>
         </Card>

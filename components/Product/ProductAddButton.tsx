@@ -4,6 +4,8 @@
 import { useRouter } from 'next/navigation';
 import { Button } from '../ui/button';
 import { useSession } from 'next-auth/react';
+import { AiOutlinePlus } from 'react-icons/ai';
+
 export default function ProductAddButton() {
   const router = useRouter();
   const { data: session } = useSession();
@@ -11,7 +13,7 @@ export default function ProductAddButton() {
     <>
       {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
         <Button onClick={() => router.push('/product/add')} className="m-1 cursor-pointer">
-          상품 추가
+          <AiOutlinePlus /> 상품 추가
         </Button>
       )}
     </>
