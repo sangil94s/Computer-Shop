@@ -1,4 +1,5 @@
 // FAQ List Components
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FAQListTypes } from '@/types/types';
@@ -14,7 +15,7 @@ async function getFaqDatas() {
   return res.json();
 }
 
-export default async function FaqList() {
+export default async function FaqList({ id }: { id: string }) {
   const getFaqData = await getFaqDatas();
 
   return (

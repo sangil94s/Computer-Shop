@@ -43,9 +43,15 @@ export default function ProductDetailCard({ id }: { id: string }) {
     <>
       <section className="w-full lg:w-1/6 h-max">
         <div className="w-full m-1 flex flex-col justify-center items-center lg:items-start">
-          <h1 className="pt-4 pb-10 text-xl lg:text-3xl font-bold">상품명 : {products?.title}</h1>
-          <p className="pb-10">상품 간단 설명 : {products?.smallDescription}</p>
+          <section>
+            <label className="font-bold">상품명</label>
+            <h1 className="pt-2 pb-10 text-xl lg:text-3xl font-bold">{products?.title}</h1>
+          </section>
 
+          <section>
+            <label className="font-bold">상품 간단 설명</label>
+            <p className="pb-10 pt-2">{products?.smallDescription}</p>
+          </section>
           <div className="my-4 w-7/12">
             <label className="font-bold text-base">수량을 선택하시오</label>
             <Select onValueChange={value => setQuantity(Number(value))}>
@@ -65,10 +71,10 @@ export default function ProductDetailCard({ id }: { id: string }) {
             </Select>
           </div>
 
-          <h3 className="py-8 text-2xl font-bold border-y-2 border-slate-300">
-            최종 가격 : {totalPrice.toLocaleString()} 원
-          </h3>
-
+          <section>
+            <label className="font-bold">최종 가격</label>
+            <h3 className="pt-2 pb-4 text-2xl font-bold">{totalPrice.toLocaleString()} 원</h3>
+          </section>
           {products?.purchase === true && (
             <>
               <Link href="/cart">
