@@ -4,6 +4,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FAQListTypes } from '@/types/types';
 import Nodata from '../common/Nodata';
+import FaqRemoveButton from './FaqRemoveButton';
 
 async function getFaqDatas() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq`, { cache: 'no-store' });
@@ -29,6 +30,7 @@ export default async function FaqList({ id }: { id: string }) {
               </AccordionTrigger>
               <AccordionContent>
                 <div className="prose" dangerouslySetInnerHTML={{ __html: item.description }} />
+                <FaqRemoveButton id={Number(item.id)} />
               </AccordionContent>
             </AccordionItem>
           </Accordion>
