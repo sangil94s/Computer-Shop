@@ -28,7 +28,7 @@ export default function Header() {
 
         <section className="px-2 py-4">
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger aria-label="드랍다운 매뉴">
               <AiOutlineMenu />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="flex flex-col justify-center items-center">
