@@ -23,7 +23,7 @@ const fetchProducts = async ({ id }: { id: string }) => {
 };
 
 export default function ProductDetailCard({ id }: { id: string }) {
-  const router = useRouter()
+  const router = useRouter();
   const { data: products } = useQuery({
     queryKey: ['productDetail', id],
     queryFn: () => fetchProducts({ id }),
@@ -79,11 +79,10 @@ export default function ProductDetailCard({ id }: { id: string }) {
           </section>
           {products?.purchase === true && (
             <>
-              
-                <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push('/cart')}>
-                  <BsCartPlus /> 장바구니 담기
-                </Button>
-              
+              <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push('/cart')}>
+                <BsCartPlus /> 장바구니 담기
+              </Button>
+
               <h4 className="py-4 text-red-600 text-base font-bold">로그인을 해야 장바구니에 담을 수 있어요!</h4>
             </>
           )}

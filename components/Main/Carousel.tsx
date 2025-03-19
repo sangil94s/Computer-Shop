@@ -31,6 +31,7 @@ export default function SwiperCarousel() {
               height={400}
               alt={`이미지 ${index + 1}`}
               className="h-64 object-cover rounded-lg"
+              priority
             />
           </SwiperSlide>
         ))}
