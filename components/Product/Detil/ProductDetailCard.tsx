@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import {
   Select,
   SelectContent,
@@ -40,7 +40,8 @@ export default function ProductDetailCard({ id }: { id: string }) {
       setTotalPrice(products.price * quantity);
     }
   }, [quantity, products]);
-
+  // console.log(session?.user.nickname)
+  // console.log(products?.id)
   return (
     <>
       <section className="w-full lg:w-2/6 h-max">
@@ -79,7 +80,7 @@ export default function ProductDetailCard({ id }: { id: string }) {
           </section>
           {products?.purchase === true && (
             <>
-              <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push('/cart')}>
+              <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push(`/cart/${products?.id}`)}>
                 <BsCartPlus /> 장바구니 담기
               </Button>
 
