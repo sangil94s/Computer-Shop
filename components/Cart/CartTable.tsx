@@ -1,11 +1,11 @@
 // 장바구니에 들어가는 상품 테이블?
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import CartRemoveButton from './CartRemoveButton';
 
 export default function CartTable() {
   return (
-    <>
+    <div className='flex flex-col justify-center w-full'>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Invoice</TableHead>
@@ -23,6 +23,7 @@ export default function CartTable() {
           </TableRow>
         </TableBody>
       </Table>
-    </>
+      <CartRemoveButton />
+    </div>
   );
 }

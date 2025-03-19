@@ -1,6 +1,6 @@
 // 상품 관련 상세 페이지가 될 부분
 import ProductDetailAddButton from '@/components/Product/Detil/ProductDetailAddButton';
-import ProductDetailCard from '@/components/Product/ProductDetailCard';
+import ProductDetailCard from '@/components/Product/Detil/ProductDetailCard';
 import ProductDetailImage from '@/components/Product/Detil/ProductDetailImage';
 import ProductDetailMainImage from '@/components/Product/Detil/ProductDetailMainImage';
 import { Metadata } from 'next';
