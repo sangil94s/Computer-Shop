@@ -80,7 +80,11 @@ export default function ProductDetailCard({ id }: { id: string }) {
           </section>
           {products?.purchase === true && (
             <>
-              <Button className="my-4 font-bold" disabled={session === null} onClick={() => router.push(`/cart/${products?.id}`)}>
+              <Button
+                className="my-4 font-bold"
+                disabled={session === null}
+                onClick={() => router.push(`/cart/${products?.id}`)}
+              >
                 <BsCartPlus /> 장바구니 담기
               </Button>
 
