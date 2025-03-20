@@ -34,6 +34,10 @@ export default function ProductAddForm() {
   } = useForm<ProductAddFormTypes>();
 
   const onSubmit = async (data: ProductAddFormTypes) => {
+    if (!publicId) {
+      alert('상품 이미지가 필요합니다.');
+      return;
+    }
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product`, {
         category: data.category,
@@ -113,11 +117,13 @@ export default function ProductAddForm() {
             <Controller
               name="purchase"
               control={control}
-              rules={{ required: '구매 가능 여부 선택은 필수 값 입니다.' }}
+              rules={{
+                validate: value => value !== undefined || '구매 가능 여부 선택은 필수 값 입니다.',
+              }}
               render={({ field }) => (
                 <Select
                   onValueChange={value => field.onChange(value === 'true')}
-                  value={field.value ? 'true' : 'false'}
+                  value={field.value !== undefined ? String(field.value) : ''}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="구매 가능 여부 선택" />
@@ -158,7 +164,7 @@ export default function ProductAddForm() {
             {publicId && <CldImage src={publicId} width={270} height={180} alt="Uploaded Image Not Found" />}
 
             <div className="flex justify-center items-center w-full">
-              <Button className="w-full my-2">
+              <Button type="submit" className="w-full my-2">
                 <AiOutlinePlus /> 상품 추가
               </Button>
             </div>

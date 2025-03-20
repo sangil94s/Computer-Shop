@@ -26,6 +26,11 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
   } = useForm<ProductDetailType>();
 
   const onSubmit = async () => {
+    if (!publicId) {
+      alert('상품 이미지가 필요합니다.');
+      return;
+    }
+
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/productdetail/${id}`, {
         productId: parseFloat(id),
@@ -37,6 +42,7 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
       console.error(error);
     }
   };
+  //console.log(publicId)
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full h-max flex flex-col justify-center items-center">
@@ -63,7 +69,9 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
 
         {publicId && <CldImage src={publicId} width={270} height={180} alt="Uploaded Image Not Found" />}
         <div className="flex justify-center items-center w-full">
-          <Button className="w-full my-2">상품 추가</Button>
+          <Button type="submit" className="w-full my-2">
+            상품 추가
+          </Button>
         </div>
       </form>
     </>
