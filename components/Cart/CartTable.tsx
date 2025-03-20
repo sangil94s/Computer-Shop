@@ -4,7 +4,7 @@ import CartRemoveButton from './CartRemoveButton';
 
 export default function CartTable() {
   return (
-    <div className='flex flex-col justify-center w-full'>
+    <div className="flex flex-col justify-center w-full">
       <Table>
         <TableHeader>
           <TableRow>
