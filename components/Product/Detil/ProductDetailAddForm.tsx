@@ -42,7 +42,6 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
       console.error(error);
     }
   };
-  //console.log(publicId)
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full h-max flex flex-col justify-center items-center">

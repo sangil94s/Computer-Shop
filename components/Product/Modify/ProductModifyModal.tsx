@@ -7,20 +7,29 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from '@/components/ui/input';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { useForm } from 'react-hook-form';
-
+import { useForm, Controller } from 'react-hook-form';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 interface ProductModifyType {
   smallDescription: string;
   price: number;
+  purchase?: boolean;
 }
 export default function ProductModifyModal({ ids }: { ids: number }) {
   const { data: session } = useSession();
-  //   console.log(ids, '1');
 
   const {
     handleSubmit,
     register,
     formState: { errors },
+    control,
   } = useForm<ProductModifyType>();
 
   const onSubmit = async (data: ProductModifyType) => {
@@ -28,6 +37,7 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
       const response = await axios.patch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${ids}`, {
         smallDescription: data.smallDescription,
         price: data.price,
+        purchase: data.purchase,
       });
       alert('수정이 완료되었어요!');
       location.reload();
@@ -60,6 +70,31 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
                 className="my-1"
               />
               {errors.price && <p className="text-red-600 text-center font-bold">상품 가격은 필수 값 입니다.</p>}
+              <Controller
+                name="purchase"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    onValueChange={value => field.onChange(value === 'true')}
+                    value={field.value !== undefined ? String(field.value) : ''}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="구매 가능 여부 선택" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>구매 가능 여부 선택</SelectLabel>
+                        <SelectItem value="true">구매 가능</SelectItem>
+                        <SelectItem value="false">품절</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.purchase && (
+                <p className="text-red-600 text-center font-bold">구매 가능 여부 선택은 필수 값 입니다.</p>
+              )}
+
               <Button className="w-full" type="submit">
                 수정하기
               </Button>

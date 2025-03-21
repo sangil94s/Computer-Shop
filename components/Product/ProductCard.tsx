@@ -34,6 +34,7 @@ export default function ProductCard() {
   useEffect(() => {
     refetch();
   }, [selectedCategory, refetch]);
+
   return (
     <>
       <ProductFilter onCategoryChange={setSelectedCategory} />

@@ -57,7 +57,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
   const updateProduct = await prisma.product.update({
     where: { id: requestedId },
-    data: { smallDescription: body.smallDescription, price: body.price },
+    data: { smallDescription: body.smallDescription, price: body.price, purchase: body.purchase },
   });
   return NextResponse.json(updateProduct);
 }
