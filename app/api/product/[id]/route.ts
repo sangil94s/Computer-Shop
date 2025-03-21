@@ -41,3 +41,23 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
   return NextResponse.json({});
 }
+
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const requestedId = Number(id);
+
+  const Product = await prisma.product.findUnique({
+    where: { id: requestedId },
+  });
+
+  if (!Product) {
+    return NextResponse.json({ error: 'Product ID NOT FOUND' }, { status: 404 });
+  }
+  const body = await request.json();
+
+  const updateProduct = await prisma.product.update({
+    where: { id: requestedId },
+    data: { smallDescription: body.smallDescription, price: body.price, purchase: body.purchase },
+  });
+  return NextResponse.json(updateProduct);
+}

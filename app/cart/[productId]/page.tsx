@@ -7,12 +7,13 @@ export const metadata: Metadata = {
   title: 'Cart | Computer-Shop',
   description: '장바구니',
 };
-export default function page() {
+export default async function page({ params }: { params: Promise<{ productId: string }> }) {
+  const productId = (await params).productId;
   return (
     <div className="flex flex-row justify-center items-center w-full">
-      <CartTable />
+      <CartTable productId={productId} />
 
-      <CartInfomation />
+      <CartInfomation productId={productId} />
     </div>
   );
 }

@@ -23,7 +23,6 @@ export default function ProductDetailAddButton({ id }: { id: string }) {
     staleTime: 1000 * 60 * 5,
   });
 
-  // console.log(productImage?.productDetailImage)
   return (
     <>
       {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT &&
