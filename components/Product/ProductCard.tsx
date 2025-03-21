@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import ProductFilter from './ProductFilter';
 import { ProductCardTypes } from '@/types/types';
 import { useRouter } from 'next/navigation';
+import ProductModifyModal from './Modify/ProductModifyModal';
 
 const fetchProducts = async (category: string | null) => {
   const url = category
@@ -43,8 +44,8 @@ export default function ProductCard() {
             const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
             const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_300,h_300,c_fill/${item.productImage}`;
             return (
-              <div className="cursor-pointer" key={item.id} onClick={() => router.push(`/product/${item.id}`)}>
-                <section className="px-1 my-1">
+              <div className="cursor-pointer" key={item.id}>
+                <section className="px-1 my-1" onClick={() => router.push(`/product/${item.id}`)}>
                   <Image src={imageUrl} width={300} height={300} alt="Product Image" className="rounded-md" />
                   <h1 className="text-base lg:text-xl font-bold py-2">제목 : {item.title}</h1>
                   {item.purchase === true ? (
@@ -55,6 +56,7 @@ export default function ProductCard() {
 
                   <ProductRemoveButton ids={item.id} />
                 </section>
+                <ProductModifyModal ids={item.id} />
               </div>
             );
           })
