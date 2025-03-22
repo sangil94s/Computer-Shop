@@ -47,12 +47,12 @@ export default function ProductCard() {
             return (
               <div className="cursor-pointer" key={item.id}>
                 <section className="px-1 my-1" onClick={() => router.push(`/product/${item.id}`)}>
-                  <Image src={imageUrl} width={300} height={300} alt="Product Image" className="rounded-md" />
-                  <h1 className="text-base lg:text-xl font-bold py-2">제목 : {item.title}</h1>
+                  <Image src={imageUrl} width={320} height={300} alt="Product Image" className="rounded-md" />
+                  <h1 className="text-base lg:text-xl font-bold py-2">{item.title}</h1>
                   {item.purchase === true ? (
-                    <p className="text-center font-bold py-2">{item.price.toLocaleString()}원</p>
+                    <p className="font-bold py-2">{item.price.toLocaleString()}원</p>
                   ) : (
-                    <p className="text-center text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
+                    <p className="text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
                   )}
 
                   <ProductRemoveButton ids={item.id} />

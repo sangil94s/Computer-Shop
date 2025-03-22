@@ -17,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { AiOutlineEdit } from 'react-icons/ai';
+
 interface ProductModifyType {
   smallDescription: string;
   price: number;
@@ -50,7 +52,9 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
     <>
       {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
         <Dialog>
-          <DialogTrigger className="text-center text-black font-bold w-full">상품 정보 수정하기</DialogTrigger>
+          <DialogTrigger className="text-center text-black font-bold w-full flex flex-row justify-center items-center">
+            <AiOutlineEdit className="m-1" /> 상품 정보 수정하기
+          </DialogTrigger>
           <DialogContent>
             <DialogHeader onSubmit={handleSubmit(onSubmit)}>
               <DialogTitle>관리자 한정 - 상품 수정 Modal</DialogTitle>
