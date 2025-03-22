@@ -10,7 +10,7 @@ export default function ProductFilter({ onCategoryChange }: ProductFilterProps) 
   const categories = ['Monitor', 'CPU', 'SSD', 'HDD', 'VGA', 'RAM'];
 
   return (
-    <div className="flex flex-row m-1 gap-1">
+    <div className="flex flex-row justify-center m-2 gap-1">
       <Badge variant="outline" className="cursor-pointer" onClick={() => onCategoryChange(null)}>
         전체
       </Badge>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function page({ params }: { params: Promise<{ productId: string }> }) {
   const productId = (await params).productId;
   return (
-    <div className="flex flex-row justify-center items-center w-full">
+    <div className="flex flex-col justify-center items-center w-full lg:flex-row">
       <CartTable productId={productId} />
 
       <CartInfomation productId={productId} />
