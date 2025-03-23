@@ -12,7 +12,7 @@ export default function ProductAddButton() {
   return (
     <>
       {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT && (
-        <Button onClick={() => router.push('/product/add')} className="m-1 cursor-pointer">
+        <Button onClick={() => router.push('/product/add')} className="m-8 cursor-pointer">
           <AiOutlinePlus /> 상품 추가
         </Button>
       )}

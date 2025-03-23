@@ -39,31 +39,33 @@ export default function ProductCard() {
     <>
       <ProductFilter onCategoryChange={setSelectedCategory} />
       {error && <p>데이터를 불러오는 중 오류 발생: {error.message}</p>}
-      <div className="grid grid-rows-1 lg:grid-cols-4 justify-items-center gap-2 m-auto">
-        {products?.length > 0 ? (
-          products.map((item: ProductCardTypes) => {
-            const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-            const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_300,h_300,c_fill/${item.productImage}`;
-            return (
-              <div className="cursor-pointer" key={item.id}>
-                <section className="px-1 my-1" onClick={() => router.push(`/product/${item.id}`)}>
-                  <Image src={imageUrl} width={320} height={300} alt="Product Image" className="rounded-md" />
-                  <h1 className="text-base lg:text-xl font-bold py-2">{item.title}</h1>
-                  {item.purchase === true ? (
-                    <p className="font-bold py-2">{item.price.toLocaleString()}원</p>
-                  ) : (
-                    <p className="text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
-                  )}
+      <div className="grid place-items-center">
+        <div className="grid grid-rows-1 lg:grid-cols-6 justify-items-center gap-2">
+          {products?.length > 0 ? (
+            products.map((item: ProductCardTypes) => {
+              const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+              const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_300,h_300,c_fill/${item.productImage}`;
+              return (
+                <div className="cursor-pointer" key={item.id}>
+                  <section className="px-1 my-1" onClick={() => router.push(`/product/${item.id}`)}>
+                    <Image src={imageUrl} width={320} height={300} alt="Product Image" className="rounded-md" />
+                    <h1 className="text-base lg:text-xl font-bold py-2">{item.title}</h1>
+                    {item.purchase === true ? (
+                      <p className="font-bold py-2">{item.price.toLocaleString()}원</p>
+                    ) : (
+                      <p className="text-red-600 font-bold py-2">이 상품은 품절이에요!</p>
+                    )}
 
-                  <ProductRemoveButton ids={item.id} />
-                </section>
-                <ProductModifyModal ids={item.id} />
-              </div>
-            );
-          })
-        ) : (
-          <Nodata />
-        )}
+                    <ProductRemoveButton ids={item.id} />
+                  </section>
+                  <ProductModifyModal ids={item.id} />
+                </div>
+              );
+            })
+          ) : (
+            <Nodata />
+          )}
+        </div>
       </div>
     </>
   );

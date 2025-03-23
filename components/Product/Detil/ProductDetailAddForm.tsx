@@ -44,7 +44,10 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full h-max flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="m-auto w-8/12 flex flex-col justify-center items-center lg:w-6/12"
+      >
         <h1>보충 이미지 추가</h1>
         <Input className="opacity-0" defaultValue={parseFloat(id)} {...register('productId', { required: true })} />
         {errors.productId && <p className="text-red-600 text-center font-bold">ID는 필수 값 입니다.</p>}
@@ -69,7 +72,7 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
         {publicId && <CldImage src={publicId} width={270} height={180} alt="Uploaded Image Not Found" />}
         <div className="flex justify-center items-center w-full">
           <Button type="submit" className="w-full my-2">
-            상품 추가
+            상세 이미지 추가
           </Button>
         </div>
       </form>

@@ -6,7 +6,7 @@ const CartSchema = z.object({
   title: z.string().min(5, '상품명은 최소 5글자 이상이어야 한다').max(25, '상품 명 은 최대 25글자 이하 여야 한다'),
   totalPrice: z.string().min(3, '가격은 3자 이상이어야한다').max(10, '가격은 10자 이하 여야한다'),
   totalCount: z.string().min(1, '상품 수량은 1 이상이어야 한다'),
-  usernick: z.string().min(2, '사용자 닉네임은 3자 이상이어야 한다'),
+  usernick: z.string().min(1, '사용자 닉네임은 3자 이상이어야 한다'),
   productId: z.number().int(),
 });
 
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
+
     const newCart = await prisma.cart.create({
       data: parsed.data,
     });

@@ -20,8 +20,8 @@ import {
 import { AiOutlineEdit } from 'react-icons/ai';
 
 interface ProductModifyType {
-  smallDescription: string;
-  price: number;
+  smallDescription?: string;
+  price?: number;
   purchase?: boolean;
 }
 export default function ProductModifyModal({ ids }: { ids: number }) {
@@ -60,14 +60,13 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
               <DialogTitle>관리자 한정 - 상품 수정 Modal</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Input {...register('smallDescription', { required: true })} placeholder="상품 간단 소개를 입력하시오" />
+              <Input {...register('smallDescription')} placeholder="상품 간단 소개를 입력하시오" />
               {errors.smallDescription && (
                 <p className="text-red-600 text-center font-bold">상품 간단 소개는 필수 값 입니다.</p>
               )}
               <Input
                 type="number"
                 {...register('price', {
-                  required: true,
                   valueAsNumber: true,
                 })}
                 placeholder="상품 가격은 필수값 입니다."
@@ -99,8 +98,8 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
                 <p className="text-red-600 text-center font-bold">구매 가능 여부 선택은 필수 값 입니다.</p>
               )}
 
-              <Button className="w-full" type="submit">
-                수정하기
+              <Button className="w-full my-1" type="submit">
+                <AiOutlineEdit className="m-1" /> 수정하기
               </Button>
             </form>
           </DialogContent>

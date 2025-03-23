@@ -27,7 +27,7 @@ export default function ProductDetailAddButton({ id }: { id: string }) {
     <>
       {session?.user.name === process.env.NEXT_PUBLIC_ADMIN_AUDIT &&
         typeof productImage?.productDetailImage !== 'string' && (
-          <Button onClick={() => router.push(`/product/${id}/detail`)}>
+          <Button className="mx-8" onClick={() => router.push(`/product/${id}/detail`)}>
             <AiOutlinePlus /> 상세 이미지 추가
           </Button>
         )}

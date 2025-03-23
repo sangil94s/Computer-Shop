@@ -17,7 +17,6 @@ export default function CartTable({ productId }: { productId: string }) {
     queryFn: fetchCartTableInfomation,
     staleTime: 1000 * 60 * 5,
   });
-
   return (
     <div className="flex flex-col justify-center w-full">
       {isError && <p>데이터를 불러오는 중 오류가 발생했습니다.</p>}
