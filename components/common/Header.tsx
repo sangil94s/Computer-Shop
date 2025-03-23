@@ -21,7 +21,7 @@ export default function Header() {
   const { data: session } = useSession();
   return (
     <>
-      <header className="flex flex-row justify-between w-full h-16 border-b-2 border-slate-200 bg-white mb-1">
+      <header className="flex flex-row justify-between w-full h-16 bg-white mb-1">
         <Link href="/" className="text-2xl font-bold px-2 py-4">
           Computer-Shop
         </Link>

@@ -11,7 +11,7 @@ import Image from 'next/image';
 const images = ['/Images/Carousel1.webp', '/Images/Carousel2.webp'];
 export default function SwiperCarousel() {
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-6xl mx-auto">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={50}
@@ -27,7 +27,7 @@ export default function SwiperCarousel() {
           <SwiperSlide key={index}>
             <Image
               src={src}
-              width={1000}
+              width={1200}
               height={400}
               alt={`이미지 ${index + 1}`}
               className="h-64 object-cover rounded-lg"
