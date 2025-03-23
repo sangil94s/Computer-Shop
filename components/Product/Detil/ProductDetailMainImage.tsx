@@ -13,8 +13,8 @@ export default async function ProductDetailMainImage({ id }: { id: string }) {
   const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_400,h_400,c_fill/${data?.productImage}`;
 
   return (
-    <>
+    <div className="flex flex-col mx-auto">
       <Image src={imageUrl} width={500} height={300} alt="Product Image" className="mx-2 lg:mx-12 rounded-lg" />
-    </>
+    </div>
   );
 }

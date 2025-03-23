@@ -41,7 +41,7 @@ export default async function page({ params }: { params: Promise<{ id: string }>
   const id = (await params).id;
   return (
     <>
-      <div className="flex justify-center items-center mx-auto flex-col lg:flex-row">
+      <div className="w-full m-auto flex flex-col lg:flex-row items-center justify-center lg:w-6/12">
         <ProductDetailMainImage id={id} />
         <ProductDetailCard id={id} />
       </div>
