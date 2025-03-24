@@ -14,8 +14,8 @@ export default function FaqRemoveButton({ id }: { id: number }) {
       await axios.delete(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/faq/${id}`);
       alert('삭제 성공!');
       location.reload();
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
 

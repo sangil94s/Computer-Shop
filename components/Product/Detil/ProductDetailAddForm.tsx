@@ -10,11 +10,8 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { CloudinaryResult } from '@/types/types';
-interface ProductDetailType {
-  productDetailImage: string;
-  productId: number;
-}
+import { CloudinaryResult, ProductDetailAddFormTypes } from '@/types/types';
+
 export default function ProductDetailAddForm({ id }: { id: string }) {
   useAdminRedirect();
   const router = useRouter();
@@ -23,7 +20,7 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ProductDetailType>();
+  } = useForm<ProductDetailAddFormTypes>();
 
   const onSubmit = async () => {
     if (!publicId) {
@@ -38,8 +35,8 @@ export default function ProductDetailAddForm({ id }: { id: string }) {
       });
       alert('작성이 완료되었어요!');
       router.push('/');
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
   return (

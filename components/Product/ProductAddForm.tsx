@@ -49,8 +49,8 @@ export default function ProductAddForm() {
       });
       alert('작성이 완료되었어요!');
       router.push('/');
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
 

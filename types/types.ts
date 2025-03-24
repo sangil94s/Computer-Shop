@@ -35,3 +35,22 @@ export interface ProductCardTypes extends ProductAddFormTypes {
 export interface PostPageTypes {
   params: { id: string };
 }
+
+export interface ProductDetailAddFormTypes {
+  productDetailImage: string;
+  productId: number;
+} // productDetailAddForm.tsx 에서 사용
+
+export interface ProductModifyModalTypes {
+  smallDescription?: string;
+  price?: number;
+  purchase?: boolean;
+} // ProductModifyModal.tsx 에서 사용
+
+export interface ProductDetailCardTypes {
+  title: string;
+  totalPrice: string;
+  totalCount: string;
+  usernick: string;
+  productId: number;
+} // ProductDetailCard.tsx 에서 사용
