@@ -17,16 +17,9 @@ import { BsCartPlus } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-
+import { ProductDetailCardTypes } from '@/types/types';
 // 상품 상세 페이지에 상품 정보가 들어갈 부분
 
-interface ProductCartType {
-  title: string;
-  totalPrice: string;
-  totalCount: string;
-  usernick: string;
-  productId: number;
-}
 const fetchProducts = async ({ id }: { id: string }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${id}`, { cache: 'no-store' });
   return res.json();
@@ -55,7 +48,7 @@ export default function ProductDetailCard({ id }: { id: string }) {
   const {
     handleSubmit,
     formState: { errors },
-  } = useForm<ProductCartType>();
+  } = useForm<ProductDetailCardTypes>();
 
   const onSubmit = async () => {
     try {
@@ -68,8 +61,8 @@ export default function ProductDetailCard({ id }: { id: string }) {
       });
       alert('완료되었어요!');
       router.push(`/cart/${products?.id}`);
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
   /* 상품 정보 장바구니 보내는 초안 */

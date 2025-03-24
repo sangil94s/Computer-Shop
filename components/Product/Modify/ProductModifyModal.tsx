@@ -18,12 +18,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { AiOutlineEdit } from 'react-icons/ai';
+import { ProductModifyModalTypes } from '@/types/types';
 
-interface ProductModifyType {
-  smallDescription?: string;
-  price?: number;
-  purchase?: boolean;
-}
 export default function ProductModifyModal({ ids }: { ids: number }) {
   const { data: session } = useSession();
 
@@ -32,9 +28,9 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
     register,
     formState: { errors },
     control,
-  } = useForm<ProductModifyType>();
+  } = useForm<ProductModifyModalTypes>();
 
-  const onSubmit = async (data: ProductModifyType) => {
+  const onSubmit = async (data: ProductModifyModalTypes) => {
     try {
       const response = await axios.patch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/product/${ids}`, {
         smallDescription: data.smallDescription,
@@ -43,8 +39,8 @@ export default function ProductModifyModal({ ids }: { ids: number }) {
       });
       alert('수정이 완료되었어요!');
       location.reload();
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.error(e);
     }
   };
 
