@@ -6,11 +6,8 @@ export interface FAQAddTypes {
   description: string;
 } // VOC ADD 와 FAQ ADD 같이 사용 = 둘이 들어가는 값이 같음.
 
-export interface FAQListTypes {
+export interface FAQListTypes extends FAQAddTypes {
   id: number;
-  category: string;
-  title: string;
-  description: string;
   createDate: string;
 } // VOC List와 FAQ List 같이 사용
 
@@ -54,3 +51,8 @@ export interface ProductDetailCardTypes {
   usernick: string;
   productId: number;
 } // ProductDetailCard.tsx 에서 사용
+
+export interface CartTableTypes extends ProductDetailCardTypes {
+  id: number;
+  createDate: string;
+} // CartTable.tsx 에서 사용
