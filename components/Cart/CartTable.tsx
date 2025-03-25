@@ -5,16 +5,8 @@ import CartRemoveButton from './CartRemoveButton';
 import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { CartTableTypes } from '@/types/types';
 
-interface ITypes {
-  id: number;
-  productId: number;
-  title: string;
-  totalCount: string;
-  totalPrice: string;
-  usernick: string;
-  createDate: string;
-}
 export default function CartTable() {
   const { data: session } = useSession();
 
@@ -30,7 +22,6 @@ export default function CartTable() {
     staleTime: 1000 * 60 * 5,
   });
 
-  console.log(data);
   return (
     <div className="flex flex-col justify-center w-full">
       {isError && <p>데이터를 불러오는 중 오류가 발생했습니다.</p>}
@@ -46,7 +37,7 @@ export default function CartTable() {
         </TableHeader>
         <TableBody>
           {data &&
-            data.map((item: ITypes) => (
+            data.map((item: CartTableTypes) => (
               <TableRow key={item.id} className="text-center">
                 <TableCell>{item.title}</TableCell>
                 <TableCell>{item.totalCount}</TableCell>

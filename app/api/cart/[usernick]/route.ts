@@ -49,12 +49,12 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ productId: string }> }) {
-  const { productId } = await params;
-  const requestedId = Number(productId);
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: number }> }) {
+  const { id } = await params;
+  const requestedId = id;
 
   const Cart = await prisma.cart.findUnique({
-    where: { productId: requestedId },
+    where: { id: requestedId },
   });
 
   if (!Cart) {
