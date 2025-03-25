@@ -52,7 +52,7 @@ export default function ProductDetailCard({ id }: { id: string }) {
 
   const onSubmit = async () => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/${products?.id}`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/${session?.user.nickname}`, {
         productId: parseFloat(products?.id),
         title: products?.title,
         totalPrice: String(totalPrice),

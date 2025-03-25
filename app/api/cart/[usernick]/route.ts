@@ -10,16 +10,16 @@ const CartSchema = z.object({
   productId: z.number().int(),
 });
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ productId: string }> }) {
-  const { productId } = await params;
-  const requestedId = Number(productId);
+export async function GET(request: NextRequest, { params }: { params: Promise<{ usernick: string }> }) {
+  const { usernick } = await params;
+  const usernicks = usernick;
 
-  const Carts = await prisma.cart.findUnique({
-    where: { productId: requestedId },
+  const Carts = await prisma.cart.findMany({
+    where: { usernick: usernicks },
   });
 
-  if (!Carts) {
-    return NextResponse.json({ error: 'ID NOT FOUND' }, { status: 404 });
+  if (!Carts || Carts.length === 0) {
+    return NextResponse.json({ error: '장바구니 데이터 없음' }, { status: 404 });
   }
 
   return NextResponse.json(Carts);

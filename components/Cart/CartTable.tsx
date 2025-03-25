@@ -4,10 +4,22 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import CartRemoveButton from './CartRemoveButton';
 import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 
-export default function CartTable({ productId }: { productId: string }) {
+interface ITypes {
+  id: number;
+  productId: number;
+  title: string;
+  totalCount: string;
+  totalPrice: string;
+  usernick: string;
+  createDate: string;
+}
+export default function CartTable() {
+  const { data: session } = useSession();
+
   const fetchCartTableInfomation = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/${productId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOY_URL}/api/cart/${session?.user.nickname}`);
     if (!res.ok) throw new Error('데이터 호출 실패');
     return res.json();
   };
@@ -17,6 +29,8 @@ export default function CartTable({ productId }: { productId: string }) {
     queryFn: fetchCartTableInfomation,
     staleTime: 1000 * 60 * 5,
   });
+
+  console.log(data);
   return (
     <div className="flex flex-col justify-center w-full">
       {isError && <p>데이터를 불러오는 중 오류가 발생했습니다.</p>}
@@ -31,12 +45,15 @@ export default function CartTable({ productId }: { productId: string }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TableRow className="text-center">
-            <TableCell>{data?.title}</TableCell>
-            <TableCell>{data?.totalCount}</TableCell>
-            <TableCell>{data?.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</TableCell>
-            <TableCell>{dayjs(data?.createDate).format('YYYY-MM-DD HH:mm')}</TableCell>
-          </TableRow>
+          {data &&
+            data.map((item: ITypes) => (
+              <TableRow key={item.id} className="text-center">
+                <TableCell>{item.title}</TableCell>
+                <TableCell>{item.totalCount}</TableCell>
+                <TableCell>{item.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</TableCell>
+                <TableCell>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
       <CartRemoveButton />
