@@ -33,8 +33,10 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <SessionProvider>
-          <Header />
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          <ReactQueryProvider>
+            <Header />
+            {children}
+          </ReactQueryProvider>
           <TopButton />
           <Footer />
         </SessionProvider>

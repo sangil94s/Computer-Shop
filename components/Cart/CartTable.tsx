@@ -21,7 +21,6 @@ export default function CartTable() {
     queryFn: fetchCartTableInfomation,
     staleTime: 1000 * 60 * 5,
   });
-
   return (
     <div className="flex flex-col justify-center w-full">
       {isError && <p>데이터를 불러오는 중 오류가 발생했습니다.</p>}
@@ -33,6 +32,7 @@ export default function CartTable() {
             <TableHead className="text-center">상품 수량</TableHead>
             <TableHead className="text-center">상품 가격</TableHead>
             <TableHead className="text-center">담은 시간</TableHead>
+            <TableHead className="text-center">삭제</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -42,12 +42,14 @@ export default function CartTable() {
                 <TableCell>{item.title}</TableCell>
                 <TableCell>{item.totalCount}</TableCell>
                 <TableCell>{item.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</TableCell>
-                <TableCell>{dayjs(item.createDate).format('YYYY-MM-DD HH:mm')}</TableCell>
+                <TableCell>{dayjs(item.createDate).format('YY-MM-DD HH:mm')}</TableCell>
+                <TableCell>
+                  <CartRemoveButton id={item.id} />
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>
       </Table>
-      <CartRemoveButton />
     </div>
   );
 }

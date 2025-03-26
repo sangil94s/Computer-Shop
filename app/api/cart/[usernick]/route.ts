@@ -48,20 +48,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: 'fail' }, { status: 500 });
   }
 }
-
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: number }> }) {
-  const { id } = await params;
-  const requestedId = id;
-
-  const Cart = await prisma.cart.findUnique({
-    where: { id: requestedId },
-  });
-
-  if (!Cart) {
-    return NextResponse.json({ error: 'Cart ID NOT FOUND' }, { status: 404 });
-  }
-
-  await prisma.cart.delete({ where: { id: requestedId } });
-
-  return NextResponse.json({});
-}
