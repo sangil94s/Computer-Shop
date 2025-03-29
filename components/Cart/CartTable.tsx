@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { CartTableTypes } from '@/types/types';
+import WidgetCheckoutPage from '../PurchaseOrder/PaymentWidget';
 
 export default function CartTable() {
   const { data: session } = useSession();
@@ -33,6 +34,7 @@ export default function CartTable() {
             <TableHead className="text-center">상품 가격</TableHead>
             <TableHead className="text-center">담은 시간</TableHead>
             <TableHead className="text-center">삭제</TableHead>
+            <TableHead className="text-center">결제</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -45,6 +47,9 @@ export default function CartTable() {
                 <TableCell>{dayjs(item.createDate).format('YY-MM-DD HH:mm')}</TableCell>
                 <TableCell>
                   <CartRemoveButton id={item.id} />
+                </TableCell>
+                <TableCell>
+                  <WidgetCheckoutPage />
                 </TableCell>
               </TableRow>
             ))}

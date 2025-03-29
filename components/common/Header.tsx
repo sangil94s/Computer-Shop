@@ -28,15 +28,15 @@ export default function Header() {
     if (!res.ok) throw new Error('데이터 호출 실패');
     return res.json();
   };
-  const { data, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ['CartInfomations'],
     queryFn: fetchUserCartInfomation,
     staleTime: 1000 * 60 * 5,
+    enabled: session?.user.nickname !== undefined,
   });
 
   return (
     <>
-      {isError && <p>데이터를 불러오는 중 오류가 발생했습니다.</p>}
       <header className="flex flex-row justify-around w-full h-16 bg-white mb-1">
         <Link href="/" className="text-2xl font-bold px-2 py-4">
           Computer-Shop
