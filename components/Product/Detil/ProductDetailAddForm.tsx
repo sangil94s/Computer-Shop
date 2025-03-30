@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // 상세 페이지의 보충 이미지 추가하는 폼
 
 'use client';

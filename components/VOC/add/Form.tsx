@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // 익명 문의를 제출받는 Form 컴포넌트
 'use client';
 

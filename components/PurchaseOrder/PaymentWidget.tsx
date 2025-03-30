@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // 토스 결제 모듈로 해당 상품 결제 정보 띄우는거 까지만 합니다
 'use client';
 
