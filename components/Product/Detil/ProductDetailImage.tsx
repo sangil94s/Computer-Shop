@@ -8,22 +8,16 @@ export default async function ProductDetailImage({ id }: { id: string }) {
     cache: 'no-store',
   });
   if (!res.ok) {
-    console.log('데이터 호출 실패: 응답이 정상적이지 않습니다.', res.status, res.statusText);
-    return;
+    return <Nodata />; // 404 응답 나오면 여기 컴포넌트를 응답하도록
   }
 
   const data = await res.json();
   const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${data?.productDetailImage}`;
-
   return (
     <div className="w-full h-max flex flex-col justify-center items-center border-t-2 border-slate-200 my-1">
       <h1 className="text-center text-xl font-bold py-2">상세 이미지</h1>
-      {data !== null ? (
-        <Image src={imageUrl} width={400} height={300} alt="이미지" className="rounded-lg" />
-      ) : (
-        <Nodata />
-      )}
+      {data !== null && <Image src={imageUrl} width={400} height={300} alt="이미지" className="rounded-lg" />}
     </div>
   );
 }
