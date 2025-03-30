@@ -1,6 +1,4 @@
 // FAQ List Components
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { FAQListTypes } from '@/types/types';
 import Nodata from '../common/Nodata';

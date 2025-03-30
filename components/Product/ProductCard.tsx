@@ -9,6 +9,7 @@ import ProductFilter from './ProductFilter';
 import { ProductCardTypes } from '@/types/types';
 import { useRouter } from 'next/navigation';
 import ProductModifyModal from './Modify/ProductModifyModal';
+import { Skeleton } from '../ui/skeleton';
 
 const fetchProducts = async (category: string | null) => {
   const url = category
@@ -26,6 +27,7 @@ export default function ProductCard() {
     data: products,
     error,
     refetch,
+    isLoading,
   } = useQuery({
     queryKey: ['products', selectedCategory],
     queryFn: () => fetchProducts(selectedCategory),
@@ -41,7 +43,17 @@ export default function ProductCard() {
       {error && <p>데이터를 불러오는 중 오류 발생: {error.message}</p>}
       <div className="grid place-items-center">
         <div className="grid grid-rows-1 lg:grid-cols-6 justify-items-center gap-2">
-          {products?.length > 0 ? (
+          {isLoading ? (
+            Array(6)
+              .fill(0)
+              .map((SkleetonItem, index) => (
+                <div key={index} className="bg-gray-300">
+                  <section className="px-1 my-1">
+                    <Skeleton className="w-[320px] h-48" />
+                  </section>
+                </div>
+              ))
+          ) : products?.length > 0 ? (
             products.map((item: ProductCardTypes) => {
               const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
               const imageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/w_300,h_300,c_fill/${item.productImage}`;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import NaverProvider from 'next-auth/providers/naver';

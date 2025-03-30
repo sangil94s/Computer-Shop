@@ -1,5 +1,4 @@
 // 관리자 전용 - 상품 정보 수정하는 Modal
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
 'use client';
 import { Button } from '@/components/ui/button';
